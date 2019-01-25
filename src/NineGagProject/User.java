@@ -28,9 +28,10 @@ public class User {
 	private Set<Post> posts;
 	private Set<Post> upvotes;
 	Settings settings;
+	NineGag site;
+	
 
-
-	public User(String names,String pass,String email) throws InvalidDataException {
+	public User(String names,String pass,String email, NineGag site) throws InvalidDataException {
 		this.settings = new Settings(this);
 		
 		
@@ -94,6 +95,8 @@ public class User {
 		
 		this.isLoggedIn = true;
 		this.userCreationTime = LocalDateTime.now();
+		this.site = site;
+		this.site.addUserToSite(this);
 	}
 	
 	//TODO just for testing; delete it afterwards
@@ -128,6 +131,12 @@ public class User {
 	public boolean isLoggedIn() {
 		return isLoggedIn;
 	}
+
+	protected void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 
 
 
