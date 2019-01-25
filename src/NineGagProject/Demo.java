@@ -10,6 +10,7 @@ public class Demo {
 
 	usi.settings.country(Countries.CAMEROON).userName().sensitiveContent(true).description("bla bla").gender(Genders.MALE);
 	System.out.println(usi.settings.toString());
+	System.out.println(Helper.userNameMaker("ivan_!*92M_irchev11@abv.bg"));
 	}
 
 }

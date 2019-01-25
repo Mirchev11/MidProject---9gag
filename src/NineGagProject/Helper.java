@@ -1,6 +1,8 @@
 package NineGagProject;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -95,21 +97,22 @@ public abstract class Helper {
 	
 	public static String userNameMaker(String email) {
 		String userName = email.substring(0, email.indexOf('@'));
-	
-//		String firstHalf = null;
-//		String secondHalf = null;
-//		int length = userName.length()-1;
-//		for(int index = 0; index <  length; index++) {
-//			if(!Character.isLetterOrDigit(userName.charAt(index))) {
-//				 firstHalf = userName.substring(0, index);
-//				 secondHalf = userName.substring(index+1,userName.length());
-//				 userName = firstHalf+secondHalf;
-////				 System.out.println(userName);
-//				 index--;
-//			}
-//			length = userName.length()-1;
-//		}
-		return userName;
+		
+		Queue<Character> newUserNameChars = new LinkedList<Character>();
+		int length = userName.length();
+		for(int index = 0 ; index < length; index++) {
+			char currentChar = userName.charAt(index);
+			if(Character.isLetterOrDigit(currentChar)) {
+				newUserNameChars.offer(currentChar);
+			}
+		}
+		
+		StringBuilder newUserName = new StringBuilder();
+		for(Character c : newUserNameChars) {
+			newUserName.append(c);
+		}
+		
+		return newUserName.toString();
 	}
 
 }
