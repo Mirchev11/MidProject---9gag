@@ -11,7 +11,7 @@ import javax.xml.bind.Validator;
 
 public class User {
 	public enum Countries {
-		CSKA, gitHubDGD;
+	
 	}
 
 	public enum Statuses {
