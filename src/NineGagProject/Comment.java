@@ -1,5 +1,11 @@
 package NineGagProject;
 
-public class Comment {
+import java.time.LocalDate;
 
+public class Comment {
+	private LocalDate date;
+
+	protected LocalDate getDate() {
+		return date;
+	}
 }

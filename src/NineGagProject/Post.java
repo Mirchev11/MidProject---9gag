@@ -11,7 +11,7 @@ public class Post {
 	private String photo;
 	private String description;
 	private boolean isSensitive;
-	private LocalDate dateOfCreation;
+	private LocalDate postDate;
 	//?? section
 	
 	//??? private Set<String> tags; choosing a few random tags to show in homepage
@@ -21,6 +21,11 @@ public class Post {
 		//if user is logged in
 		//?? what is a valid photo??
 	}
+
+	public LocalDate getPostDate() {
+		return postDate;
+	}
+	
 	
 
 }

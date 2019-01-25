@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.xml.bind.Validator;
 
@@ -72,6 +73,10 @@ public class User {
 		this.userName = Helper.userNameMaker(this.email);
 		this.dateOfUserCreation = LocalDateTime.now();
 		
+		this.comments = new TreeSet<Comment>((com1,com2)-> com1.getDate().compareTo(com2.getDate()));
+		this.posts = new TreeSet<Post>((pos1,pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
+		this.upvotes = new TreeSet<Post>((pos1,pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
+		
 		
 		
 		
@@ -137,16 +142,31 @@ public class User {
 	}
 
 	//TODO should it be static???
-	private static class Settings {
-		//TODO ?? should all these fields be copied maybe there is a better solution
-		private String photo; // TODO maybe a collection(ArrayList?) with default profile pictures and option to choose a random one; also to select your own
-		private String userName; 
-		private LocalDate birthDate; 
-		private Countries country;
-		private String description;
-		private Statuses status;
-		private Genders gender;
-		private boolean sensitiveContent;
+//	private static class Settings {
+//		//TODO ?? should all these fields be copied maybe there is a better solution
+//		private String photo; // TODO maybe a collection(ArrayList?) with default profile pictures and option to choose a random one; also to select your own
+//		private String userName; 
+//		private LocalDate birthDate; 
+//		private Countries country;
+//		private String description;
+//		private Statuses status;
+//		private Genders gender;
+//		private boolean sensitiveContent;
+//	}
+//
+	
+	protected String getEmail() {
+		return this.email;
+	}
+	
+	protected String getFullName() {
+		return fullName;
 	}
 
+
+	protected String getPassword() {
+		return password;
+	}
+
+	
 }
