@@ -1,10 +1,10 @@
 package NineGagProject;
 
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 
-import NineGagProject.Settings.Countries;
-import NineGagProject.Settings.Genders;
-import NineGagProject.Settings.Statuses;
 
 public class Settings {
 	public enum Countries {
@@ -76,7 +76,7 @@ public class Settings {
 	
 	
 //	public Settings birthDate(String date) {
-//		пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!
+//		не знам как точно да стане!
 //	}
 	
 	public Settings country(Countries country) {

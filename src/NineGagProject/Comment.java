@@ -8,4 +8,5 @@ public class Comment {
 	protected LocalDate getDate() {
 		return date;
 	}
+	
 }

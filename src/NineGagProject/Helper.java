@@ -1,8 +1,6 @@
 package NineGagProject;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,7 +49,7 @@ public abstract class Helper {
 			}
 			return false;
 		}
-	//TODO change validator to not accept space in passoword
+
 	public static class passwordValidator {
 		
 		private static boolean checkIfThereIsSmallLetter(String pass) {
@@ -97,21 +95,6 @@ public abstract class Helper {
 	
 	public static String userNameMaker(String email) {
 		String userName = email.substring(0, email.indexOf('@'));
-		
-		Queue<Character> newUserNameChars = new LinkedList<Character>();
-		int length = userName.length();
-		for(int index = 0 ; index < length; index++) {
-			char currentChar = userName.charAt(index);
-			if(Character.isLetterOrDigit(currentChar)) {
-				newUserNameChars.offer(currentChar);
-			}
-		}
-		
-		String newUserName = "";
-		for(Character c : newUserNameChars) {
-			newUserName += c;
-		}
-		//TODO maybe there is a better way to convert to string
 	
 //		String firstHalf = null;
 //		String secondHalf = null;
@@ -126,7 +109,7 @@ public abstract class Helper {
 //			}
 //			length = userName.length()-1;
 //		}
-		return newUserName;
+		return userName;
 	}
 
 }
