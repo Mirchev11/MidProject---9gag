@@ -12,7 +12,7 @@ public class NineGag {
 	
 	Map<Integer,String> tags = new HashMap<Integer,String>();	//tags - hashcode na imeto na taga, string - taga;
 	Map<String, User> users = new HashMap<String, User>(); //String - mail, User -user
-	Set<Post> post = new TreeSet<Post>((post1,post2) )
+	Set<Post> post = new TreeSet<Post>((post1, post2) -> (post1.getPostDate().compareTo(post2.getPostDate())));
 //	Map<String, Section> sections = new TreeMap<String,Section>(); //String - name of section, Secion - section
 //	Set<Post> hotPosts = new TreeSet<Post>((post1,post2) -> post1.getPoints() - post2.getPoints()); 
 	Set<Post> fresh = new TreeSet<Post>((post1,post2) -> post1.getPostDate().compareTo(post2.getPostDate()));
