@@ -1,5 +1,7 @@
 package NineGagProject;
 
+import java.util.Scanner;
+
 import javax.swing.JFrame;
 
 import NineGagProject.Settings.Countries;
@@ -8,36 +10,17 @@ import NineGagProject.Settings.Genders;
 public class Demo {
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidDataException, InterruptedException {
 
 	 
-	NineGag site = new NineGag();
-	try {
-		User usi = new User("Ivan Mirchev","Im112488","ivanmirchev92@abv.bg",site);
-		User usi1 = new User("Dimitar Petrov","Cska1948","mitko@gmail.com",site);
-		User usi2 = new User("Georgi Pavlov","Levski1329","georgiPavlov@abv.bg",site);
-		User usi3 = new User("Asen Georgiev","mIroEUmen13","AGeo@yahoo.com",site);
-		User usi4 = new User("Ivan Naidenov","AzIsEGot3n","naidenov13@abv.bg",site);
-		User usi5 = new User("Lazarina Semkova","P3TkoVoiVoda","lazaSemkova@mail.bg",site);
+		Menu m = new Menu(); //viknal sym ti menuto za da testvash, imash izbor za suzdavane na user i logavne, ima oshte za doopravqne
+								//ne e zaduljitelno da polzvame klasovete - Login_System,LoginUser,RegisterForm,CreateUser i Menu, tova e front end, moje i bez tqh da si napravim vsichko ako ne te kefi
+									//nqma da se nalagat promeni na koda
+		m.main();
 
-		usi.printUserInformation();
-		Login_System login = new Login_System(site);
-		login.main(args);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	} catch (InvalidDataException e) {
-		System.out.println("Did not create a user!");
-	}
-	
 
-	
+		
+		 
 	}
 
 }

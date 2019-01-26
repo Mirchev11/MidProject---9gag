@@ -13,25 +13,41 @@ public class Post {
 	private String description;
 	private boolean isSensitive;
 	private LocalDateTime postDate;
+	private int points;
 	//section
 	
 	
 	private Set<String> tags;
 	private List<Comment> comments;
 	
-	private Post(User user, String photo, String description, boolean isSensitive) throws NotLoggedInException{
+	public Post(User user, String photo, String description, boolean isSensitive) throws NotLoggedInException{
 		if(user.isLoggedIn()) {
 			this.user = user;
 			this.photo = photo;
 			this.description = description;
 			this.isSensitive = isSensitive;
 			this.postDate = LocalDateTime.now();
+			NineGag site = NineGag.giveNineGag();
+			site.addMeme(this);
 		} else {
 			throw new NotLoggedInException("Not logged in user!");
 		}
 	}
 	
 	
+	void increasePoints() {
+		this.points++;
+	}
+	
+	void decreasePoints() {
+		this.points--;
+	}
+
+	protected int getPoints() {
+		return points;
+	}
+
+
 
 	protected LocalDateTime getPostDate() {
 		return postDate;

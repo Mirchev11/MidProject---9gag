@@ -27,76 +27,46 @@ public class User {
 	private Set<Post> commentedPosts;
 	private Set<Post> posts;
 	private Set<Post> upvotes;
-	Settings settings;
-	NineGag site;
+	private Settings settings;
+	
 	
 
-	public User(String names,String pass,String email, NineGag site) throws InvalidDataException {
+	public User(String names,String pass,String email) throws InvalidDataException {
 		this.settings = new Settings(this);
-		
-		
-		Scanner sc = new Scanner(System.in);
-		while (!Helper.isNameValid(names)) { 
-			
-			System.out.println("Enter valid name:");
-			names = sc.nextLine();
-			if(names.equalsIgnoreCase("X")) {
+
+		if(Helper.isNameValid(names)) { 
+			this.fullName = names;
+		} else {
 				throw new InvalidDataException("Unable to create user!");
-			}
-			if (!Helper.isNameValid(names)) {
-				System.out.println("Invalid name!");
-			}
-			
-			System.out.println(names);
 		}
 
-		this.fullName = names;
-		System.out.println("Your name was accepted!");
-		System.out.println("Your name is " + this.fullName);
 		
-		
-		
-		while (!Helper.passwordValidator.isPasswordStrong(pass)) {
-			System.out.println("Enter new password 8 or more characters, "
-					+ "atleas 1 capital letter,1 small letter and 1 number:");
-			pass = sc.next();
-			if(pass.equalsIgnoreCase("X")) {
+		if(Helper.passwordValidator.isPasswordStrong(pass)) {
+			this.password = pass;
+			}else {
 				throw new InvalidDataException("Unable to create user!");
 			}
-			if (!Helper.passwordValidator.isPasswordStrong(pass)) {
-				System.out.println("Weak password!");
-			}
-		}
-
-		this.password = pass;
-		System.out.println("Your password is valid!");
-		System.out.println("Your password is: " + this.password);
+			
 
 	
 		Helper.EmailValidator validator = new Helper.EmailValidator();
-		while (!validator.validate(email) || email == null) { // check if there already is such email in the database
-			System.out.println("Enter a valid email!");
-			email = sc.next();
-			if(email.equalsIgnoreCase("X")) {
-				throw new InvalidDataException("Unable to create user!");
-			}
-			if (!validator.validate(email) || email == null) {
-				System.out.println("Bad email entered!");
-			}
+		
+		if(validator.validate(email) || email == null) { // check if there already is such email in the database
+			this.email = email;
+		} else {
+			throw new InvalidDataException("Unable to create user!");
 		}
-		this.email = email;
-		System.out.println("Your email is accepted");
-		System.out.println("Your email is " + this.email);
-
-		settings.setUserName(Helper.userNameMaker(this.email));
+	
+		this.settings.setUserName(Helper.userNameMaker(this.email));
 		this.commentedPosts = new TreeSet<Post>((com1,com2)-> com1.getPostDate().compareTo(com2.getPostDate()));
 		this.posts = new TreeSet<Post>((pos1,pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
 		this.upvotes = new TreeSet<Post>((pos1,pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
 		
 		this.isLoggedIn = true;
 		this.userCreationTime = LocalDateTime.now();
-		this.site = site;
-		this.site.addUserToSite(this);
+	
+		NineGag.giveNineGag().addUserToSite(this);
+//		this.printUserInformation();
 	}
 	
 	//TODO just for testing; delete it afterwards
@@ -112,6 +82,14 @@ public class User {
 			
 		}
 
+		public void createAPost(String photo,String description, boolean isSensitive) throws NotLoggedInException {
+			 this.posts.add(new Post(this,photo,description,isSensitive));
+		}
+		
+		public void writeAComment() {
+			
+		}
+		
 
 	protected String getFullName() {
 		return fullName;
