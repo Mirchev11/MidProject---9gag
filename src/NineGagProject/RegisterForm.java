@@ -86,7 +86,7 @@ public class RegisterForm { //forma za registraciq vzima konstructora ot User i 
 						if(NineGag.giveNineGag().checkIfUserExists(us.getEmail())){
 						JOptionPane.showMessageDialog(null, "Welcome to 9gag!", "Your account is ready to use!",
 								JOptionPane.INFORMATION_MESSAGE);
-						NineGag.giveNineGag().printAllUsers();
+
 						} else {
 							JOptionPane.showMessageDialog(null, "User already exists!", "Try another email!", JOptionPane.ERROR_MESSAGE);
 						}

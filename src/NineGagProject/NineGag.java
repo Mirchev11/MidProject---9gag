@@ -43,6 +43,8 @@ public class NineGag { // reshish da e singleton, zaradi GUI i frontend-a
 		}
 	}
 
+		
+
 	// User methods - add,check, etc:
 
 	void printAllUsers() { // print for check purpose

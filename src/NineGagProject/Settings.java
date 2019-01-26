@@ -54,10 +54,6 @@ public class Settings {
 		}
 	}
 	
-	
-	
-
-
 	public Settings photo(String photo) {
 		if(photo != null) {
 			this.photo = photo;
