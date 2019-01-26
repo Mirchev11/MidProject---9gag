@@ -66,7 +66,7 @@ public class User {
 		this.userCreationTime = LocalDateTime.now();
 	
 		NineGag.giveNineGag().addUserToSite(this);
-//		this.printUserInformation();
+		this.printUserInformation();
 	}
 	
 	//TODO just for testing; delete it afterwards
@@ -82,11 +82,36 @@ public class User {
 			
 		}
 
-		public void createAPost(String photo,String description, boolean isSensitive) throws NotLoggedInException {
-			 this.posts.add(new Post(this,photo,description,isSensitive));
+		public void createAPost(String photo,String description) throws NotLoggedInException {
+			Post newPost = new Post(this,photo,description);
+			 this.posts.add(newPost);
+			 NineGag.giveNineGag().addMeme(newPost);
 		}
 		
-		public void writeAComment() {
+		public void listAllPosts() { //Lista vsichki postove za potrebitelq
+			System.out.println("Posts");
+			for(Post p : this.posts) {
+				p.showPost();
+			}
+		}
+		
+		public void listAllCommentedPosts() {
+			System.out.println("Commented");
+			for(Post p : this.commentedPosts) {
+				p.showPost();
+			}
+		}
+		
+		public void listAllPostIHaveVotedUp() {
+			System.out.println("Upvotes");
+			for(Post p : this.upvotes) {
+				p.showPost();
+			}
+		}
+		
+		public void writeAComment(Post p,String comment) {
+			p.addComment(comment);
+			this.commentedPosts.add(p);
 			
 		}
 		

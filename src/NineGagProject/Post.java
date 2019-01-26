@@ -2,6 +2,7 @@ package NineGagProject;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -37,6 +38,7 @@ public class Post {
 			if(Helper.isStringValid(description)) {
 				this.description = description;
 			}
+			this.comments = new ArrayList<Comment>();
 		} else {
 			throw new NotLoggedInException("Not logged in user!");
 		}
@@ -46,8 +48,17 @@ public class Post {
 	public Post(User user, String photo, String description, boolean isSensitive) throws NotLoggedInException{
 		this(user, photo, description);
 		this.isSensitive = isSensitive;
-}
+	}
 	
+	public void addComment(String content) {
+		if(content != null && content.trim().length() > 0) {
+			try {
+				this.comments.add(new Comment(content));
+			} catch (InvalidDataException e) {
+				System.out.println("Invalid content for comment!");
+			}
+		} 
+	}
 
 	void increasePoints() {
 		this.points++;
@@ -62,9 +73,28 @@ public class Post {
 	}
 
 
-	public void showPostInformation() {
-		//test
+	public void showPost() {
+		System.out.println("-----------------------------------");
+		System.out.println("-----------------------------------");
+		System.out.println("Descripion: \n" + this.description);
+		System.out.println("----------------------------");
+		System.out.println(this.photo);
+		System.out.println("----------------------------");
+		System.out.println("Points: " + this.points);
+		System.out.println("----------------------------");
+		System.out.println("Uploaded on: " + this.postDate);
+		System.out.println("-----------------------------------");
+		System.out.println("-----------------------------------");
 	}
+	
+	
+	public void listAllCommentsForAPost() {
+		for(Comment c : this.comments) {
+			c.printComment();//da izvadq metod, koito mi printi komentara.
+		}
+	}
+	
+
 
 
 	protected LocalDateTime getPostDate() {
