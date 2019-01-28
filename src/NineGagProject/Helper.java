@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Helper {
+	private static final int MAX_COMMENT_LENGTH = 1000;
 	private static final int MIN_PASS_LENGTH = 8;
 
 	public static class EmailValidator {
@@ -113,6 +114,13 @@ public abstract class Helper {
 		}
 		
 		return newUserName.toString();
+	}
+	
+	public static boolean maxCommentLength(String content) {
+		if(content.length() > MAX_COMMENT_LENGTH) {
+			return false;
+		}
+		return true;
 	}
 
 }

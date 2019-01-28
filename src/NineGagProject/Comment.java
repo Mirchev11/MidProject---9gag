@@ -11,10 +11,11 @@ public class Comment {
 	private String content;
 	private int points;
 	private List<Comment> replies;
+	private User user;
 	
 	
 	public Comment(String content) throws InvalidDataException {
-		if(content != null) {
+		if(content != null && Helper.maxCommentLength(content)) {
 			this.content = content;
 			this.date = LocalDateTime.now();
 			this.replies = new ArrayList<Comment>();
@@ -52,6 +53,7 @@ public class Comment {
 //		return this.replies;
 //	}
 	
+	//TODO ne trqbva li user-a da trie komentara a ne samiq komentar da trie sebe si
 	protected void removeRepplie(Comment c) { //zaradi composite patterna se nalaga edin vid rekursivno da obikalqme komentarite i da gi triem;
 		if(this.replies.contains(c)) {
 			Iterator<Comment> it = c.replies.iterator();

@@ -27,6 +27,7 @@ public class User {
 	private Set<Post> commentedPosts;
 	private Set<Post> posts;
 	private Set<Post> upvotes;
+	
 	private Settings settings;
 	
 	

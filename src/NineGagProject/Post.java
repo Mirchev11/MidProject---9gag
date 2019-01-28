@@ -1,25 +1,35 @@
 package NineGagProject;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Post {
+	
+	private static final int MAX_HOURS_FOR_COMMENTS_IN_FRESH = 2;
+	private static final int POINTS_FOR_HOT_COMMENTS = 5;
 
-	// which are mandatory
 	private User user;
 	private String photo;
 	private String description;
 	private boolean isSensitive;
 	private LocalDateTime postDate;
 	private int points;
-	// section
+	private int upvotes;
+	//TODO section
 
 	private Set<String> tags;
 	private List<Comment> comments;
+	private Set<Comment> freshComments;
+	private Set<Comment> hotComments;
 
 	public Post(User user, String photo, String description) throws NotLoggedInException {
 
@@ -38,6 +48,21 @@ public class Post {
 			}
 			this.comments = new ArrayList<Comment>();
 			this.tags = new TreeSet<String>();
+			this.freshComments = new TreeSet<Comment>(new Comparator<Comment>() {
+
+				@Override
+				public int compare(Comment comm1, Comment comm2) {
+					return comm1.getDate().compareTo(comm2.getDate());
+				}
+			});
+			//TODO ???
+			this.hotComments = new TreeSet<Comment>(new Comparator<Comment>() {
+
+				@Override
+				public int compare(Comment comm1, Comment comm2) {
+					return comm1.getPoints() - comm2.getPoints();
+				}
+				});
 		} else {
 			throw new NotLoggedInException("Not logged in user!");
 		}
@@ -58,9 +83,40 @@ public class Post {
 			}
 		}
 	}
+	
+	void putCommentsInFresh() {
+		if(!comments.isEmpty()) {
+			for(Iterator<Comment> it = comments.iterator(); it.hasNext();) {
+				Comment c = it.next();
+				long hours = Duration.between(c.getDate(), LocalTime.now()).toHours();
+				if (hours >= 0 && hours <= MAX_HOURS_FOR_COMMENTS_IN_FRESH) {
+					this.freshComments.add(c);
+				}
+			}
+		} else {
+			System.out.println("There are no comments to put in fresh");
+		}
+	}
+	
+	void putCommentsInHot() {
+		if(!comments.isEmpty()) {
+			for(Iterator<Comment> it = comments.iterator(); it.hasNext();) {
+				Comment c = it.next();
+				if (c.getPoints() > POINTS_FOR_HOT_COMMENTS) {
+					long hours = Duration.between(c.getDate(), LocalTime.now()).toHours();
+					if (hours >= 0 && hours <= MAX_HOURS_FOR_COMMENTS_IN_FRESH) {
+						this.hotComments.add(c);
+					}
+				}
+			} 
+		}else {
+			System.out.println("There are no comments to put in hot");
+		}
+	}
 
 	void increasePoints() {
 		this.points++;
+		this.upvotes++;
 	}
 
 	void decreasePoints() {
@@ -68,10 +124,7 @@ public class Post {
 			this.points--;
 		}
 	}
-
-	protected int getPoints() {
-		return points;
-	}
+	
 
 	public void showPost() {
 		System.out.println("-----------------------------------");
@@ -101,6 +154,15 @@ public class Post {
 		}
 	}
 	
+	public Set<String> getAllTags() {
+		Set<String> allTagsForAPost = new HashSet<String>();
+		for(String tag : tags) {
+			allTagsForAPost.add(tag);
+		}
+		return allTagsForAPost;
+		
+	}
+	
 	public boolean isPostTaggedWith(String tag) {
 		if(Helper.isStringValid(tag)) {
 			for(String t : this.tags) {
@@ -120,9 +182,25 @@ public class Post {
 		}
 		return false;
 	}
+	
+	public int getUpvotes() {
+		return upvotes;
+	}
+	
 
+	protected int getPoints() {
+		return points;
+	}
+	
 	protected LocalDateTime getPostDate() {
 		return postDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Post [user=" + user + ", photo=" + photo + ", description=" + description + ", isSensitive="
+				+ isSensitive + ", postDate=" + postDate + ", points=" + points + ", upvotes=" + upvotes + ", tags="
+				+ tags + "]";
 	}
 
 }
