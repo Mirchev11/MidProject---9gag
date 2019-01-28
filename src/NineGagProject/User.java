@@ -82,10 +82,11 @@ public class User {
 			
 		}
 
-		public void createAPost(String photo,String description) throws NotLoggedInException {
+		public Post createAPost(String photo,String description) throws NotLoggedInException {
 			Post newPost = new Post(this,photo,description);
 			 this.posts.add(newPost);
 			 NineGag.giveNineGag().addMeme(newPost);
+			 return newPost;
 		}
 		
 		public void listAllPosts() { //Lista vsichki postove za potrebitelq
@@ -120,6 +121,23 @@ public class User {
 			this.listAllCommentedPosts();
 			System.out.println("-----------");
 			this.listAllPostIHaveVotedUp();
+		}
+		
+		
+		public void searching (String search) {
+			this.printFoundPosts(NineGag.giveNineGag().giveSearchedPosts(search));
+			
+		}
+		
+		public void printFoundPosts(List<Post> result) {
+			if(result.size() == 0) {
+				System.out.println("No posts found!");
+				return;
+			} 
+			
+			for(Post p : result) {
+				p.showPost();
+			}
 		}
 
 	protected String getFullName() {

@@ -37,16 +37,15 @@ public class NineGag { // reshish da e singleton, zaradi GUI i frontend-a
 
 	synchronized public static NineGag giveNineGag() {
 		if (NineGag.singleton == null) {
-			synchronized(NineGag.class) {
-				if(NineGag.singleton == null) {
-		
-			singleton = new NineGag();
-			
+			synchronized (NineGag.class) {
+				if (NineGag.singleton == null) {
+
+					singleton = new NineGag();
+
 				}
 			}
-		} 
-			return singleton;
-		
+		}
+		return singleton;
 	}
 
 	// User methods - add,check, etc:
@@ -107,11 +106,16 @@ public class NineGag { // reshish da e singleton, zaradi GUI i frontend-a
 		}
 	}
 
-	boolean checkIfTagExists(String tag) {
-		if (tags.containsKey(tag.hashCode())) {
-			return true;
+	public List<Post> giveSearchedPosts(String search) {
+
+		List<Post> resultsFromSearch = new ArrayList<Post>();
+
+		for (Post p : this.posts) {
+			if (p.doesDescriptionContainsSearch(search) || p.isPostTaggedWith(search)) {
+				resultsFromSearch.add(p);
+			}
 		}
-		return false;
+		return resultsFromSearch;
 	}
 
 }

@@ -17,10 +17,14 @@ import java.awt.SystemColor;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollBar;
+import javax.swing.JTextField;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JFormattedTextField;
 
 public class MenuFor9gag {
 
 	private JFrame frame;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -50,6 +54,8 @@ public class MenuFor9gag {
 	 */
 	private void initialize() { //startova stranica na 9gag
 		frame = new JFrame();
+		frame.getContentPane().setForeground(Color.GRAY);
+		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 10));
 		frame.setBounds(200, 200, 500, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -93,6 +99,16 @@ public class MenuFor9gag {
 		btnLogin.setBackground(SystemColor.desktop);
 		btnLogin.setBounds(296, 11, 89, 23);
 		panel.add(btnLogin);
+		
+		textField = new JTextField();
+		textField.setBounds(162, 14, 124, 20);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblSearch = new JLabel("Search");
+		lblSearch.setForeground(Color.GRAY);
+		lblSearch.setBounds(121, 17, 46, 14);
+		panel.add(lblSearch);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 42, 93, 419);
