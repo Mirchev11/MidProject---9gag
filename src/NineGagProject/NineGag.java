@@ -11,12 +11,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class NineGag { // reshish da e singleton, zaradi GUI i frontend-a
 
-	private static NineGag singleton;
+	private static volatile NineGag singleton;
 	private Map<Integer, String> tags; // tags - hashcode na imeto na taga, string - taga;
-	private Map<String, User> users; // String - mail, User -user
+	final ConcurrentMap<String, User> users; // String - mail, User -user
 	private Set<Post> posts;
 	// Map<String, Section> sections = new TreeMap<String,Section>(); //String -
 	// name of section, Secion - section
@@ -26,24 +28,26 @@ public class NineGag { // reshish da e singleton, zaradi GUI i frontend-a
 
 	private NineGag() {
 		this.tags = new HashMap<Integer, String>();
-		this.users = new HashMap<String, User>();
+		this.users = new ConcurrentHashMap<String, User>();
 		this.fresh = new TreeSet<Post>((post1, post2) -> post1.getPostDate().compareTo(post2.getPostDate()));
 		this.posts = new TreeSet<Post>((post1, post2) -> post1.getPostDate().compareTo(post2.getPostDate()));
 		this.hotPosts = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
 		this.trending = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
 	}
 
-	public static NineGag giveNineGag() {
+	synchronized public static NineGag giveNineGag() {
 		if (NineGag.singleton == null) {
-			NineGag sigi = new NineGag();
-			singleton = sigi;
-			return sigi;
-		} else {
-			return singleton;
-		}
-	}
-
+			synchronized(NineGag.class) {
+				if(NineGag.singleton == null) {
 		
+			singleton = new NineGag();
+			
+				}
+			}
+		} 
+			return singleton;
+		
+	}
 
 	// User methods - add,check, etc:
 
@@ -55,19 +59,23 @@ public class NineGag { // reshish da e singleton, zaradi GUI i frontend-a
 		}
 	}
 
-	void addUserToSite(User user) {
-		if (users.containsKey(user.getEmail())) {
-			System.out.println("User with this email already exists");
-			return;
+	synchronized void addUserToSite(User user) {
+		synchronized (this.users) {
+			if (users.containsKey(user.getEmail())) {
+				System.out.println("User with this email already exists");
+				return;
+			}
+			users.put(user.getEmail(), user);
 		}
-		users.put(user.getEmail(), user);
 	}
 
 	boolean checkIfUserExists(String email) { // email check
-		if (users.containsKey(email)) {
-			return true;
+		synchronized (this.users) {
+			if (users.containsKey(email)) {
+				return true;
+			}
+			return false;
 		}
-		return false;
 	}
 
 	boolean checkIfPasswordIsCorrect(String email, String pass) { // pass check
@@ -86,20 +94,18 @@ public class NineGag { // reshish da e singleton, zaradi GUI i frontend-a
 			this.posts.add(newPost);
 		}
 	}
-	
 
 	void putInHot() {
-		for (Post p : this.posts) {   //po-dobre da stane s iterator, da obhojda postovete ot poslednite 2 chasa i tiq s nad 10 da gi buta v hot
+		for (Post p : this.posts) { // po-dobre da stane s iterator, da obhojda postovete ot poslednite 2 chasa i
+									// tiq s nad 10 da gi buta v hot
 			if (p.getPoints() > 10) {
 				long hours = Duration.between(p.getPostDate(), LocalTime.now()).toHours();
 				if (hours >= 0 && hours <= 2) {
-						this.hotPosts.add(p);
+					this.hotPosts.add(p);
 				}
 			}
 		}
 	}
-	
-	
 
 	boolean checkIfTagExists(String tag) {
 		if (tags.containsKey(tag.hashCode())) {

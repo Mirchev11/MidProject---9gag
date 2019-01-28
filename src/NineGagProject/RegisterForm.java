@@ -40,7 +40,7 @@ public class RegisterForm { //forma za registraciq vzima konstructora ot User i 
 	/**
 	 * Launch the application.
 	 */
-	public static synchronized void main() {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -83,19 +83,21 @@ public class RegisterForm { //forma za registraciq vzima konstructora ot User i 
 				try {
 					User us = new User(fullNameField.getText(), passwordField.getText(),emailField.getText());
 					if (us != null) {
-						if(NineGag.giveNineGag().checkIfUserExists(us.getEmail())){
+						if(!NineGag.giveNineGag().checkIfUserExists(emailField.getText())){
+							NineGag.giveNineGag().addUserToSite(us);
 						JOptionPane.showMessageDialog(null, "Welcome to 9gag!", "Your account is ready to use!",
 								JOptionPane.INFORMATION_MESSAGE);
-
+							frame.setVisible(false);
 						} else {
 							JOptionPane.showMessageDialog(null, "User already exists!", "Try another email!", JOptionPane.ERROR_MESSAGE);
 						}
-					}
-				} catch (InvalidDataException e1) {
+					}		
+				}catch (InvalidDataException e1) {
 					JOptionPane.showMessageDialog(null, "Invalid entry!", "Signup Error", JOptionPane.ERROR_MESSAGE);
 				}
-				frame.setVisible(false);
+			
 				
+			
 			}
 		});
 		btnRegister.setForeground(SystemColor.text);
@@ -149,7 +151,7 @@ public class RegisterForm { //forma za registraciq vzima konstructora ot User i 
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Menu m = new Menu();
+				LoginMenu m = new LoginMenu();
 				m.main();
 				frame.setVisible(false);
 			}

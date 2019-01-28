@@ -5,6 +5,7 @@ public class LoginUser implements Runnable { // nishka, koqto se vika kogato otv
 	@Override
 	public void run() {
 		Login_System lg = new Login_System();
+		System.out.println(NineGag.giveNineGag().users.size());
 		lg.main();
 	}
 }

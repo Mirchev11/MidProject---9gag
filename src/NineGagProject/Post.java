@@ -65,7 +65,9 @@ public class Post {
 	}
 	
 	void decreasePoints() {
+		if(this.points >= 0) {
 		this.points--;
+		}
 	}
 
 	protected int getPoints() {

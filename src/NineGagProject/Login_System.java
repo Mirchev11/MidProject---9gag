@@ -26,7 +26,7 @@ public class Login_System { //napravih sistema za logvane na useri
 	/**
 	 * Launch the application.
 	 */
-	public static synchronized void main() {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -105,11 +105,12 @@ public class Login_System { //napravih sistema za logvane na useri
 				if(NineGag.giveNineGag().checkIfUserExists(email)) {
 					if(NineGag.giveNineGag().checkIfPasswordIsCorrect(email, password)) {
 						JOptionPane.showMessageDialog(null, "You logged in successfully", "Logged in!", JOptionPane.INFORMATION_MESSAGE);
+						frame.setVisible(false);
 					}
 				} else {
 				JOptionPane.showMessageDialog(null, "Invalid loggin details!", "Login Error", JOptionPane.ERROR_MESSAGE);
 				}
-				frame.setVisible(false);
+				
 				
 			}
 		});
@@ -140,6 +141,7 @@ public class Login_System { //napravih sistema za logvane na useri
 				if(JOptionPane.showConfirmDialog(frmLoginSystem, "Confirm if you want to exit","Login Systems",
 						JOptionPane.YES_NO_OPTION)== JOptionPane.YES_NO_OPTION) {
 					frame.setVisible(false);
+					System.exit(0);
 				}
 			}
 		});
@@ -149,7 +151,7 @@ public class Login_System { //napravih sistema za logvane na useri
 		JButton btnNewButton_3 = new JButton("Back");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Menu m = new Menu();
+				LoginMenu m = new LoginMenu();
 				m.main();
 				frame.setVisible(false);
 			}

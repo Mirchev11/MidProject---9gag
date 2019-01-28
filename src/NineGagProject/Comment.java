@@ -75,4 +75,10 @@ public class Comment {
 		this.points++;
 	}
 	
+	protected void rateDown() {
+		if(this.points >= 0) {
+			this.points--;
+		}
+	}
+	
 }

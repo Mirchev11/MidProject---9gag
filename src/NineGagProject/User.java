@@ -65,7 +65,7 @@ public class User {
 		this.isLoggedIn = true;
 		this.userCreationTime = LocalDateTime.now();
 	
-		NineGag.giveNineGag().addUserToSite(this);
+		
 		this.printUserInformation();
 	}
 	
@@ -112,9 +112,15 @@ public class User {
 		public void writeAComment(Post p,String comment) {
 			p.addComment(comment);
 			this.commentedPosts.add(p);
-			
 		}
 		
+		public void openProfile() {
+			this.listAllPosts();
+			System.out.println("-----------");
+			this.listAllCommentedPosts();
+			System.out.println("-----------");
+			this.listAllPostIHaveVotedUp();
+		}
 
 	protected String getFullName() {
 		return fullName;
