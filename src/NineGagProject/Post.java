@@ -37,7 +37,6 @@ public class Post {
 			this.postDate = LocalDateTime.now();
 
 			NineGag site = NineGag.giveNineGag();
-			site.addMeme(this);
 
 			this.user = user;
 			if (Helper.isStringValid(photo)) {

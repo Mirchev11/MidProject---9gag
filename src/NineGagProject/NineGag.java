@@ -54,13 +54,7 @@ private static final int UPVOTES_FOR_TRENDING = 10;
 
 	synchronized public static NineGag giveNineGag() {
 		if (NineGag.singleton == null) {
-			synchronized (NineGag.class) {
-				if (NineGag.singleton == null) {
-
-					singleton = new NineGag();
-
-				}
-			}
+			NineGag.singleton = new NineGag();
 		}
 		return singleton;
 	}

@@ -23,19 +23,18 @@ import javax.swing.UIManager;
 
 import com.sun.glass.events.WindowEvent;
 
-public class RegisterForm { //forma za registraciq vzima konstructora ot User i suzdava obekt na bazata na vuvedenite v poletata textove
-								//ako ne vadi message board.
+public class RegisterForm { // forma za registraciq vzima konstructora ot User i suzdava obekt na bazata na
+							// vuvedenite v poletata textove
+							// ako ne vadi message board.
 
 	private JFrame frame;
 	private JTextField emailField;
 	private JPasswordField passwordField;
 	private JTextField fullNameField;
 
-
 	protected String getFullNameField() {
 		return this.emailField.getText();
 	}
-	
 
 	/**
 	 * Launch the application.
@@ -60,7 +59,6 @@ public class RegisterForm { //forma za registraciq vzima konstructora ot User i 
 		initialize();
 
 	}
-	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -81,23 +79,24 @@ public class RegisterForm { //forma za registraciq vzima konstructora ot User i 
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					User us = new User(fullNameField.getText(), passwordField.getText(),emailField.getText());
+					User us = new User(fullNameField.getText(), passwordField.getText(), emailField.getText());
 					if (us != null) {
-						if(!NineGag.giveNineGag().checkIfUserExists(emailField.getText())){
+						if (!NineGag.giveNineGag().checkIfUserExists(emailField.getText())) {
 							NineGag.giveNineGag().addUserToSite(us);
-						JOptionPane.showMessageDialog(null, "Welcome to 9gag!", "Your account is ready to use!",
-								JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Welcome to 9gag!", "Your account is ready to use!",
+									JOptionPane.INFORMATION_MESSAGE);
 							frame.setVisible(false);
+							MenuForLoggedUsers9gag.main();
+						
 						} else {
-							JOptionPane.showMessageDialog(null, "User already exists!", "Try another email!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "User already exists!", "Try another email!",
+									JOptionPane.ERROR_MESSAGE);
 						}
-					}		
-				}catch (InvalidDataException e1) {
+					}
+				} catch (InvalidDataException e1) {
 					JOptionPane.showMessageDialog(null, "Invalid entry!", "Signup Error", JOptionPane.ERROR_MESSAGE);
 				}
-			
-				
-			
+
 			}
 		});
 		btnRegister.setForeground(SystemColor.text);
@@ -147,12 +146,11 @@ public class RegisterForm { //forma za registraciq vzima konstructora ot User i 
 		lblFu.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblFu.setBounds(126, 54, 119, 32);
 		frame.getContentPane().add(lblFu);
-		
+
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LoginMenu m = new LoginMenu();
-				m.main();
+				MenuFor9gag.main();
 				frame.setVisible(false);
 			}
 		});

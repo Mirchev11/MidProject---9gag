@@ -29,7 +29,7 @@ public class MenuFor9gag {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -76,8 +76,8 @@ public class MenuFor9gag {
 		JButton btnNewButton = new JButton("Sign up");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Thread tr = new Thread(new LoginMenuStarterThread());
-				tr.start();
+				RegisterForm.main();
+				frame.setVisible(false);
 			}
 		});
 		btnNewButton.setBackground(SystemColor.textHighlight);
@@ -90,8 +90,8 @@ public class MenuFor9gag {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Thread tr = new Thread(new LoginMenuStarterThread());
-				tr.start();
+				Login_System.main();
+				frame.setVisible(false);
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));

@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import jdk.nashorn.internal.runtime.regexp.joni.constants.Arguments;
+
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
@@ -106,6 +109,7 @@ public class Login_System { //napravih sistema za logvane na useri
 					if(NineGag.giveNineGag().checkIfPasswordIsCorrect(email, password)) {
 						JOptionPane.showMessageDialog(null, "You logged in successfully", "Logged in!", JOptionPane.INFORMATION_MESSAGE);
 						frame.setVisible(false);
+						MenuForLoggedUsers9gag.main();
 					}
 				} else {
 				JOptionPane.showMessageDialog(null, "Invalid loggin details!", "Login Error", JOptionPane.ERROR_MESSAGE);
@@ -151,8 +155,7 @@ public class Login_System { //napravih sistema za logvane na useri
 		JButton btnNewButton_3 = new JButton("Back");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LoginMenu m = new LoginMenu();
-				m.main();
+				MenuFor9gag.main();
 				frame.setVisible(false);
 			}
 		});
