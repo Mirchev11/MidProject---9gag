@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
@@ -16,8 +18,8 @@ import java.awt.event.ActionEvent;
 public class CreateAPost {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField filePath;
+	private JTextField description;
 	private JTextField textField_2;
 	private JTextField textField_3;
 
@@ -58,10 +60,10 @@ public class CreateAPost {
 		lblPastePath.setBounds(10, 44, 100, 23);
 		frame.getContentPane().add(lblPastePath);
 		
-		textField = new JTextField();
-		textField.setBounds(99, 44, 249, 25);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		filePath = new JTextField();
+		filePath.setBounds(99, 44, 249, 25);
+		frame.getContentPane().add(filePath);
+		filePath.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Upload a post");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -74,15 +76,15 @@ public class CreateAPost {
 		lblDescription.setBounds(10, 89, 100, 23);
 		frame.getContentPane().add(lblDescription);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(99, 92, 249, 57);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		description = new JTextField();
+		description.setBounds(99, 92, 249, 57);
+		frame.getContentPane().add(description);
+		description.setColumns(10);
 		
-		JLabel lblTags = new JLabel("Tags");
-		lblTags.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTags.setBounds(10, 236, 87, 23);
-		frame.getContentPane().add(lblTags);
+		JLabel tags = new JLabel("Tags");
+		tags.setFont(new Font("Tahoma", Font.BOLD, 15));
+		tags.setBounds(10, 236, 87, 23);
+		frame.getContentPane().add(tags);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
@@ -122,6 +124,13 @@ public class CreateAPost {
 		JButton btnUpload = new JButton("Upload");
 		btnUpload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				try {
+//					Post post = new Post(null, null, null, false);
+//				} catch (NotLoggedInException e1) {
+//					// TODO Auto-generated catch block
+//					JOptionPane.showMessageDialog(null, "Please log in!", "Unloged user", JOptionPane.ERROR_MESSAGE);
+//				}
+				
 			}
 		});
 		btnUpload.setForeground(SystemColor.text);
@@ -130,10 +139,10 @@ public class CreateAPost {
 		btnUpload.setBounds(358, 319, 110, 31);
 		frame.getContentPane().add(btnUpload);
 		
-		JLabel lblSection = new JLabel("Section");
-		lblSection.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSection.setBounds(10, 186, 87, 23);
-		frame.getContentPane().add(lblSection);
+		JLabel section = new JLabel("Section");
+		section.setFont(new Font("Tahoma", Font.BOLD, 15));
+		section.setBounds(10, 186, 87, 23);
+		frame.getContentPane().add(section);
 		
 		textField_3 = new JTextField();
 		textField_3.setBounds(99, 186, 249, 23);

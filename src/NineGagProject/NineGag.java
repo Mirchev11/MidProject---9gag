@@ -18,6 +18,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 public class NineGag { 
+	
+	
+private static final int MIN_POINTS_FOR_HOT_POST = 10;
 private static final int MAX_NUMBER_OF_RANDOM_TAGS = 8;
 private static final int MAX_HOURS_FOR_POSTS_IN_HOT = 2;
 private static final int MAX_HOURS_FOR_POSTS_IN_FRESH = 2;
@@ -27,77 +30,41 @@ private static final int UPVOTES_FOR_TRENDING = 10;
 
 // reshish da e singleton, zaradi GUI i frontend-a
 
-	private static volatile NineGag singleton;
+	private static NineGag singleton;
 	private Map<Integer, String> tags; // tags - hashcode na imeto na taga, string - taga; 
 	//TODO do we need a map for all tags??
 	private Set<String> allTags;
 	//TODO maybe map < string, list<post>>?
-	
-	final ConcurrentMap<String, User> users; // String - mail, User -user
-	
 	private Set<Post> posts;
 	// Map<String, Section> sections = new TreeMap<String,Section>(); //String -
 	// name of section, Secion - section
 	private Set<Post> hotPosts; // posts with points over given constant and are uploaded in the last 2 hours
 	private Set<Post> fresh; // posts that are uploaded in the last 2 hours
 	private Set<Post> trending; //  posts that are most upvoted in the past few hours??
+	private UserStorage usersStorage;
 
 	private NineGag() {
 		this.tags = new HashMap<Integer, String>();
 		this.allTags = new HashSet<String>();
-		this.users = new ConcurrentHashMap<String, User>();
 		this.fresh = new TreeSet<Post>((post1, post2) -> post1.getPostDate().compareTo(post2.getPostDate()));
 		this.posts = new TreeSet<Post>((post1, post2) -> post1.getPostDate().compareTo(post2.getPostDate()));
 		this.hotPosts = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
 		this.trending = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
+		this.usersStorage = UserStorage.giveUserStorage();
 	}
 
-	synchronized public static NineGag giveNineGag() {
+	public static NineGag giveNineGag() {
 		if (NineGag.singleton == null) {
 			NineGag.singleton = new NineGag();
 		}
 		return singleton;
 	}
 
-	// User methods - add,check, etc:
-
-	void printAllUsers() { // print for check purpose
-		for (Map.Entry<String, User> en : users.entrySet()) {
-			User us = en.getValue();
-			System.out.println("areee");
-			us.printUserInformation();
-		}
+	public UserStorage getStorage(){
+		return this.usersStorage;
 	}
-
-	synchronized void addUserToSite(User user) {
-		synchronized (this.users) {
-			if (users.containsKey(user.getEmail())) {
-				System.out.println("User with this email already exists");
-				return;
-			}
-			users.put(user.getEmail(), user);
-		}
-	}
-
-	boolean checkIfUserExists(String email) { // email check
-		synchronized (this.users) {
-			if (users.containsKey(email)) {
-				return true;
-			}
-			return false;
-		}
-	}
-
-	boolean checkIfPasswordIsCorrect(String email, String pass) { // pass check
-		if (this.checkIfUserExists(email)) {
-			User u = users.get(email);
-			if (u.getPassword().equals(pass)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
+	
+	
 	// posts methods and distributing
 	void addMeme(Post newPost) {
 		if (newPost != null) {
@@ -109,8 +76,11 @@ private static final int UPVOTES_FOR_TRENDING = 10;
 		for (Iterator<Post> it = posts.iterator(); it.hasNext();) {
 			Post p = it.next();
 			if (p.getPoints() > POINTS_FOR_HOT_POSTS) {
-				long hours = Duration.between(p.getPostDate(), LocalTime.now()).toHours();
-				if (hours >= 0 && hours <= MAX_HOURS_FOR_POSTS_IN_HOT) {
+				long hours = Duration.between(p.getPostDate(), LocalTime.now()).toHours(); 
+				if(hours >  MAX_HOURS_FOR_POSTS_IN_HOT){
+					return;
+				}
+				if (hours >= 0  && p.getPoints() >= MIN_POINTS_FOR_HOT_POST) {
 					this.hotPosts.add(p);
 				}
 			}
@@ -128,11 +98,16 @@ private static final int UPVOTES_FOR_TRENDING = 10;
 		for (Iterator<Post> it = posts.iterator(); it.hasNext();) { 
 			Post p = it.next();
 			long hours = Duration.between(p.getPostDate(), LocalTime.now()).toHours();
-			if (hours >= 0 && hours <= MAX_HOURS_FOR_POSTS_IN_FRESH) {
+			if(hours >  MAX_HOURS_FOR_POSTS_IN_FRESH){
+				return;
+			}
+			if (hours >= 0) {
 				this.fresh.add(p);
 			}
 		}
 	}
+	
+	
 	
 	void showFreshPosts() {
 		System.out.println("The fresh posts are: ");
@@ -159,6 +134,8 @@ private static final int UPVOTES_FOR_TRENDING = 10;
 			allTags.addAll(p.getAllTags());
 		}
 	}
+	
+	
 	void showAllTags() {
 		for(String tag : allTags) {
 			System.out.println(tag);

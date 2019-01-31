@@ -20,7 +20,7 @@ public class Demo {
 		
 		
 		
-		MenuForLoggedUsers9gag.main();
+		MenuFor9gag.main();
 		
 	}
 
