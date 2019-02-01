@@ -24,12 +24,14 @@ public class Post {
 	private LocalDateTime postDate;
 	private int points;
 	private int upvotes;
-	//TODO section
+	private String section;
 
 	private Set<String> tags;
 	private List<Comment> comments;
 	private Set<Comment> freshComments;
 	private Set<Comment> hotComments;
+	
+	
 
 	public Post(User user, String photo, String description) throws NotLoggedInException {
 
@@ -68,8 +70,14 @@ public class Post {
 
 	}
 
-	public Post(User user, String photo, String description, boolean isSensitive) throws NotLoggedInException {
+	public Post(User user, String photo, String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException {
 		this(user, photo, description);
+		if(NineGag.isValidSection(section)) {
+			this.section = section;
+		} else {
+			throw new InvalidSectionException("Invalid section given!");
+		}
+		
 		this.isSensitive = isSensitive;
 	}
 
@@ -195,11 +203,19 @@ public class Post {
 		return postDate;
 	}
 
+	public String getSection() {
+		return section;
+	}
+
 	@Override
 	public String toString() {
 		return "Post [user=" + user + ", photo=" + photo + ", description=" + description + ", isSensitive="
 				+ isSensitive + ", postDate=" + postDate + ", points=" + points + ", upvotes=" + upvotes + ", tags="
 				+ tags + "]";
 	}
+
+	
+
+
 
 }

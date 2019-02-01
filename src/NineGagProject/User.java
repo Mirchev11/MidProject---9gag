@@ -2,6 +2,7 @@ package NineGagProject;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -14,6 +15,7 @@ import NineGagProject.Settings.Genders;
 import NineGagProject.Settings.Statuses;
 
 public class User {
+	Scanner sc = new Scanner(System.in);
 	
 	public enum Genders {
 		MALE, FEMALE, UNSPECIFIED;
@@ -27,7 +29,7 @@ public class User {
 	private Set<Post> commentedPosts;
 	private Set<Post> posts;
 	private Set<Post> upvotes;
-	
+	private Set<String> favouriteSections; 
 	private Settings settings;
 	
 	
@@ -62,6 +64,7 @@ public class User {
 		this.commentedPosts = new TreeSet<Post>((com1,com2)-> com1.getPostDate().compareTo(com2.getPostDate()));
 		this.posts = new TreeSet<Post>((pos1,pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
 		this.upvotes = new TreeSet<Post>((pos1,pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
+		this.favouriteSections = new LinkedHashSet<String>();
 		
 		this.isLoggedIn = true;
 		this.userCreationTime = LocalDateTime.now();
@@ -83,8 +86,8 @@ public class User {
 			
 		}
 
-		public Post createAPost(String photo,String description) throws NotLoggedInException {
-			Post newPost = new Post(this,photo,description);
+		public Post createAPost(String photo,String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException {
+			Post newPost = new Post(this,photo,description, section, isSensitive);
 			 this.posts.add(newPost);
 			 NineGag.giveNineGag().addMeme(newPost);
 			 return newPost;
@@ -139,6 +142,25 @@ public class User {
 			for(Post p : result) {
 				p.showPost();
 			}
+		}
+		
+		//TODO change it according to front end
+		public void addSectionToFavourites(String... sections ) {
+			for(String section : sections) {
+				if(section != null && NineGag.isValidSection(section)) {
+					this.favouriteSections.add(section);
+				} else {
+					System.out.println("There is no such section");
+				}
+			}
+		}
+		
+		public void showMyFavouriteSections() {
+			System.out.println("My favourite sections are: ");
+			for(String s : favouriteSections) {
+				System.out.println(s);
+			}
+				 
 		}
 
 	protected String getFullName() {

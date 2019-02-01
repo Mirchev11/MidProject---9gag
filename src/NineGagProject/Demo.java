@@ -12,15 +12,29 @@ public class Demo {
 	
 	public static void main(String[] args) throws InvalidDataException, InterruptedException, NotLoggedInException {
 		
-//		User usi = new User("Ivan m", "Im112488","ivan@abv.bg");
-//		usi.createAPost("photo1", "Mega qkata snimka, brat!").addTagsToPost("snimka","qko","fun", "tag1", "tag2", "tag3", "tag4", "tag5");
-//		usi.createAPost("photo2", "Malko tupa snimka, brat!").addTagsToPost("tag1","grozen", "tag6", "tag7", "tag8", "tag9", "tag10");
-//		usi.searching("tup");
+		User usi = new User("Ivan m", "Im112488","ivan@abv.bg");
+		try {
+			usi.createAPost("photo1", "Mega qkata snimka, brat!", "Animals", false).addTagsToPost("snimka","qko","fun");
+			usi.createAPost("photo2", "Malko tupa snimka, brat!", "Funny", true).addTagsToPost("tag1","tag10");
+		} catch (InvalidSectionException e) {
+			System.out.println("Invalid Section!");
+		}
+		//usi.searching("tup");
+		
+		usi.addSectionToFavourites("Funny", "Animals", "Ask 9GAG");
+		usi.showMyFavouriteSections();
+		
+		
+		NineGag ninegag = NineGag.giveNineGag();
+		//ninegag.showAllSections();
+		ninegag.showPostsAccordingToSections();
 		
 		
 		
 		
-		MenuFor9gag.main();
+		
+		
+		//MenuFor9gag.main();
 		
 	}
 
