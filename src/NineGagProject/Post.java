@@ -82,7 +82,7 @@ public class Post {
 	}
 
 	public void addComment(String content) {
-		if (content != null && content.trim().length() > 0) {
+		if (Helper.isStringValid(content)) {
 			try {
 				this.comments.add(new Comment(content));
 			} catch (InvalidDataException e) {

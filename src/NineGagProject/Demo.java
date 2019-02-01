@@ -21,20 +21,17 @@ public class Demo {
 		}
 		//usi.searching("tup");
 		
-		usi.addSectionToFavourites("Funny", "Animals", "Ask 9GAG");
-		usi.showMyFavouriteSections();
-		
-		
-		NineGag ninegag = NineGag.giveNineGag();
-		//ninegag.showAllSections();
-		ninegag.showPostsAccordingToSections();
-		
-		
-		
+//		usi.addSectionToFavourites("Funny", "Animals", "Ask 9GAG");
+//		usi.showMyFavouriteSections();
+//		
+//		
+//		NineGag ninegag = NineGag.giveNineGag();
+//		//ninegag.showAllSections();
+//		ninegag.showPostsAccordingToSections();
 		
 		
 		
-		//MenuFor9gag.main();
+		MenuFor9gag.main();
 		
 	}
 

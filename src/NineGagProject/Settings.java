@@ -61,7 +61,6 @@ public class Settings {
 		return this;
 	}
 	
-	
 	public Settings userName() {
 	String mailOfUser =	this.owner.getEmail();
 		if(mailOfUser != null) {
@@ -111,33 +110,17 @@ public class Settings {
 				+ gender + "]";
 	}
 
-
-
-
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
-
-
-
 
 	public Genders getGender() {
 		return gender;
 	}
 
-
-
-
-
 	public void setGender(Genders gender) {
 		this.gender = gender;
 	}
-
-
-
-
 
 	public String getUserName() {
 		return userName;

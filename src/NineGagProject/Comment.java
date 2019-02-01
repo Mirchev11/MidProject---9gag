@@ -15,7 +15,7 @@ public class Comment {
 	
 	
 	public Comment(String content) throws InvalidDataException {
-		if(content != null && Helper.maxCommentLength(content)) {
+		if(Helper.isStringValid(content) && Helper.maxCommentLength(content)) {
 			this.content = content;
 			this.date = LocalDateTime.now();
 			this.replies = new ArrayList<Comment>();
@@ -55,18 +55,24 @@ public class Comment {
 	
 	//TODO ne trqbva li user-a da trie komentara a ne samiq komentar da trie sebe si
 	protected void removeRepplie(Comment c) { //zaradi composite patterna se nalaga edin vid rekursivno da obikalqme komentarite i da gi triem;
-		if(this.replies.contains(c)) {
-			Iterator<Comment> it = c.replies.iterator();
-			this.replies.remove(c);
-			while(it.hasNext()) {
-				Comment com = it.next();
-				c.removeRepplie(com);
-			}
+		if(c != null) {
+			if(this.replies.contains(c)) {
+				Iterator<Comment> it = c.replies.iterator();
+				this.replies.remove(c);
+					while(it.hasNext()) {
+						Comment com = it.next();
+						c.removeRepplie(com);
+					}
+				}
 		}
+		
 	}
 	
 	protected void addReplie(Comment c) {
-		this.replies.add(c);
+		if(c != null) {
+			this.replies.add(c);
+		}
+		
 	}
 	
 	protected LocalDateTime getDate() {

@@ -20,28 +20,25 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 public class NineGag { 
-	Scanner sc = new Scanner(System.in);
+	private static final int MIN_POINTS_FOR_HOT_POST = 10;
+	private static final int MAX_NUMBER_OF_RANDOM_TAGS = 8;
+	private static final int MAX_HOURS_FOR_POSTS_IN_HOT = 2;
+	private static final int MAX_HOURS_FOR_POSTS_IN_FRESH = 2;
+	private static final int MAX_HOURS_FOR_POSTS_IN_TRENDING = 2;
+	private static final int POINTS_FOR_HOT_POSTS = 10;
+	private static final int UPVOTES_FOR_TRENDING = 10;
 	
+	//TODO array of sections ??? maybe there is a better way to store them
+	private static final String[] sections = {"Funny", "Animals", "Anime&Manga", "Ask 9GAG",
+				"Awesome", "Basketball", "Car", "Comic", "Cosplay", "Countryballs", 
+				"Classical Art Memes", "DIY & Crafts", "Drawing & Illistration", "Fan Art",
+				"Food & Drinks", "Football", "Fortnite", "Gaming", "GIF", "Girl", "Girly Things",
+				"Guy", "History", "Horror", "Home Design", "K-Pop", "League of Legends", "LEGO",
+				"Movie & TV", "Music", "NFK - Not For Kids", "Overwatch", "PC Master Race", "Pic Of The Day",
+				"Pokemon", "Politics", "Relationship", "PUBG", "Roast Me", "Savage", "Satisfying",
+				"School", "Sci-Tech", "Star Wars", "Superhero", "Surreal Memes", "Sport", "Travel",
+				"Timely", "Video", "Warhammer", "Wallpaper", "WTF", "Dark Humor"};
 	
-private static final int MIN_POINTS_FOR_HOT_POST = 10;
-private static final int MAX_NUMBER_OF_RANDOM_TAGS = 8;
-private static final int MAX_HOURS_FOR_POSTS_IN_HOT = 2;
-private static final int MAX_HOURS_FOR_POSTS_IN_FRESH = 2;
-private static final int MAX_HOURS_FOR_POSTS_IN_TRENDING = 2;
-private static final int POINTS_FOR_HOT_POSTS = 10;
-private static final int UPVOTES_FOR_TRENDING = 10;
-
-//TODO array of sections ??? maybe there is a better way to store them
-private static final String[] sections = {"Funny", "Animals", "Anime&Manga", "Ask 9GAG",
-			"Awesome", "Basketball", "Car", "Comic", "Cosplay", "Countryballs", 
-			"Classical Art Memes", "DIY & Crafts", "Drawing & Illistration", "Fan Art",
-			"Food & Drinks", "Football", "Fortnite", "Gaming", "GIF", "Girl", "Girly Things",
-			"Guy", "History", "Horror", "Home Design", "K-Pop", "League of Legends", "LEGO",
-			"Movie & TV", "Music", "NFK - Not For Kids", "Overwatch", "PC Master Race", "Pic Of The Day",
-			"Pokemon", "Politics", "Relationship", "PUBG", "Roast Me", "Savage", "Satisfying",
-			"School", "Sci-Tech", "Star Wars", "Superhero", "Surreal Memes", "Sport", "Travel",
-			"Timely", "Video", "Warhammer", "Wallpaper", "WTF", "Dark Humor"};
-
 
 	private static NineGag singleton;
 	private Map<Integer, String> tags; // tags - hashcode na imeto na taga, string - taga; 
@@ -53,9 +50,7 @@ private static final String[] sections = {"Funny", "Animals", "Anime&Manga", "As
 	private Set<Post> hotPosts; // posts with points over given constant and are uploaded in the last 2 hours
 	private Set<Post> fresh; // posts that are uploaded in the last 2 hours
 	private Set<Post> trending; //  posts that are most upvoted in the past few hours??
-	
 	private Map<String, Set<Post>> sectionOfPosts; // String section, tree set of posts 
-	
 	
 	private UserStorage usersStorage;
 
@@ -185,12 +180,14 @@ private static final String[] sections = {"Funny", "Animals", "Anime&Manga", "As
 	}
 	
 	public static boolean isValidSection(String section) {
-		int length = sections.length;
 		boolean isValid = false;
-		for(int index = 0 ; index < length; index++) {
-			if(sections[index].equalsIgnoreCase(section)) {
-				isValid = true; 
-				break;
+		if(Helper.isStringValid(section)) {
+			int length = sections.length;
+			for(int index = 0 ; index < length; index++) {
+				if(sections[index].equalsIgnoreCase(section)) {
+					isValid = true; 
+					break;
+				}
 			}
 		}
 		return isValid;

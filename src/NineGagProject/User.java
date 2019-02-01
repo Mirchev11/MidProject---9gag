@@ -15,8 +15,6 @@ import NineGagProject.Settings.Genders;
 import NineGagProject.Settings.Statuses;
 
 public class User {
-	Scanner sc = new Scanner(System.in);
-	
 	public enum Genders {
 		MALE, FEMALE, UNSPECIFIED;
 	}
@@ -29,11 +27,10 @@ public class User {
 	private Set<Post> commentedPosts;
 	private Set<Post> posts;
 	private Set<Post> upvotes;
-	private Set<String> favouriteSections; 
+	private Set<String> favouriteSections;
+	
 	private Settings settings;
 	
-	
-
 	public User(String names,String pass,String email) throws InvalidDataException {
 		this.settings = new Settings(this);
 
@@ -43,15 +40,12 @@ public class User {
 				throw new InvalidDataException("Unable to create user!");
 		}
 
-		
 		if(Helper.passwordValidator.isPasswordStrong(pass)) {
 			this.password = pass;
 			}else {
 				throw new InvalidDataException("Unable to create user!");
 			}
 			
-
-	
 		Helper.EmailValidator validator = new Helper.EmailValidator();
 		
 		if(validator.validate(email) || email == null) { // check if there already is such email in the database
@@ -68,9 +62,8 @@ public class User {
 		
 		this.isLoggedIn = true;
 		this.userCreationTime = LocalDateTime.now();
-	
 		
-		this.printUserInformation();
+		//this.printUserInformation();
 	}
 	
 	//TODO just for testing; delete it afterwards
@@ -86,22 +79,32 @@ public class User {
 			
 		}
 
-		public Post createAPost(String photo,String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException {
-			Post newPost = new Post(this,photo,description, section, isSensitive);
-			 this.posts.add(newPost);
-			 NineGag.giveNineGag().addMeme(newPost);
-			 return newPost;
+		public Post createAPost(String photo,String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException, InvalidDataException {
+			if(Helper.isStringValid(photo) && Helper.isStringValid(description) && Helper.isStringValid(section)) {
+				if(NineGag.isValidSection(section)) {
+					Post newPost = new Post(this,photo,description, section, isSensitive);
+					this.posts.add(newPost);
+					NineGag.giveNineGag().addMeme(newPost);
+					return newPost;
+				} else {
+					throw new InvalidSectionException("Invalid section given!");
+				}
+				
+			} else {
+				throw new InvalidDataException("Invalid data given for post!");
+			}
+			
 		}
 		
-		public void listAllPosts() { //Lista vsichki postove za potrebitelq
-			System.out.println("Posts");
+		public void listAllPosts() {
+			System.out.println("Posts: ");
 			for(Post p : this.posts) {
 				p.showPost();
 			}
 		}
 		
 		public void listAllCommentedPosts() {
-			System.out.println("Commented");
+			System.out.println("Commented posts: ");
 			for(Post p : this.commentedPosts) {
 				p.showPost();
 			}
@@ -115,8 +118,13 @@ public class User {
 		}
 		
 		public void writeAComment(Post p,String comment) {
-			p.addComment(comment);
-			this.commentedPosts.add(p);
+			if(p != null && Helper.isStringValid(comment)) {
+				p.addComment(comment);
+				this.commentedPosts.add(p);
+			} else {
+				System.out.println("It was not possible to write a comment!");
+			}
+			
 		}
 		
 		public void openProfile() {
@@ -128,8 +136,13 @@ public class User {
 		}
 		
 		
-		public void searching (String search) {
-			this.printFoundPosts(NineGag.giveNineGag().giveSearchedPosts(search));
+		public void searching (String search){
+			if(Helper.isStringValid(search)) {
+				this.printFoundPosts(NineGag.giveNineGag().giveSearchedPosts(search));
+			} else {
+				System.out.println("Inavlid search");
+			}
+			
 			
 		}
 		
@@ -183,7 +196,12 @@ public class User {
 	}
 
 	protected void setEmail(String email) {
-		this.email = email;
+		Helper.EmailValidator validator = new Helper.EmailValidator();
+		
+		if(validator.validate(email) || email == null) {
+			this.email = email;
+		}
+		
 	}
 	
 	

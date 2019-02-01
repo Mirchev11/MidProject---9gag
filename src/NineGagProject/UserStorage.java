@@ -33,13 +33,15 @@ public class UserStorage { //class to store users
 	}
 
 	 void addUserToSite(User user) {
-		synchronized (this.users) {
-			if (users.containsKey(user.getEmail())) {
-				System.out.println("User with this email already exists");
-				return;
+		 if(user != null) {
+			synchronized (this.users) {
+				if (users.containsKey(user.getEmail())) {
+					System.out.println("User with this email already exists");
+					return;
+				}
+				users.put(user.getEmail(), user);
 			}
-			users.put(user.getEmail(), user);
-		}
+		 }
 	}
 
 	boolean checkIfUserExists(String email) { // email check
