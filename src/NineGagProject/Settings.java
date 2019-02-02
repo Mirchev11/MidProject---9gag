@@ -69,10 +69,16 @@ public class Settings {
 		return this;
 	}
 	
-	
-//	public Settings birthDate(String date) {
-//		не знам как точно да стане!
-//	}
+	//date is in format yyyy-mm-dd 
+	//TODO change regex to match other date formats
+	public Settings birthDate(String date) throws InvalidDataException {
+		Helper.FormattedDateMatcher matcher = new Helper.FormattedDateMatcher();
+		if(Helper.isStringValid(date) && matcher.matches(date)) {
+			this.birthDate = LocalDate.parse(date);
+			
+		} 
+		return this;
+	}
 	
 	public Settings country(Countries country) {
 		if(Countries.contains(country)) {
@@ -124,6 +130,10 @@ public class Settings {
 
 	public String getUserName() {
 		return userName;
+	}
+
+	public LocalDate getBirthDate() {
+		return birthDate;
 	}
 	
 }

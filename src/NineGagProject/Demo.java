@@ -31,7 +31,9 @@ public class Demo {
 		
 		
 		
-		MenuFor9gag.main();
+		
+		
+		//MenuFor9gag.main();
 		
 	}
 

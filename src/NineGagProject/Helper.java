@@ -10,6 +10,17 @@ import java.util.regex.Pattern;
 public abstract class Helper {
 	private static final int MAX_COMMENT_LENGTH = 1000;
 	private static final int MIN_PASS_LENGTH = 8;
+	
+	public static class FormattedDateMatcher{
+		 
+	    private static Pattern DATE_PATTERN = Pattern.compile(
+	      "^\\d{4}-\\d{2}-\\d{2}$");
+	 
+	   
+	    public boolean matches(String date) {
+	        return DATE_PATTERN.matcher(date).matches();
+	    }
+	}
 
 	public static class EmailValidator {
 
@@ -32,6 +43,7 @@ public abstract class Helper {
 
 		}
 	}
+	
 	
 		public static boolean isStringValid(String str) {
 			if (str != null && !(str.trim().equals("")) && str.trim().length() > 0) {
