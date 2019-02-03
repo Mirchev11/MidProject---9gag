@@ -43,7 +43,7 @@ public class Settings {
 		}
 	}
 	private User owner;
-	private String photo;
+	private String photo = systemUserAvatars[(int) (Math.random() * systemUserAvatars.length)];;
 	private String userName;
 	private LocalDate birthDate;
 	private Countries country;
@@ -144,6 +144,14 @@ public class Settings {
 
 	public LocalDate getBirthDate() {
 		return birthDate;
+	}
+
+	public static String[] getSystemuseravatars() {
+		return systemUserAvatars;
+	}
+
+	public String getPhoto() {
+		return photo;
 	}
 	
 }

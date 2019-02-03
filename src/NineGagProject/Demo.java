@@ -29,7 +29,8 @@ public class Demo {
 //		//ninegag.showAllSections();
 //		ninegag.showPostsAccordingToSections();
 		
-	
+//	Ads ad = new Ads();
+//	ad.start();
 		 
 		 
 		
