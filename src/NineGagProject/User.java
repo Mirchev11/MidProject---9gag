@@ -96,6 +96,19 @@ public class User {
 			
 		}
 		
+		public void changePassword(String oldPass, String newPass) {
+			if(Helper.isStringValid(oldPass) && oldPass.equals(this.password)) {
+				Helper.passwordValidator passValidator = new Helper.passwordValidator();
+				if(passValidator.isPasswordStrong(newPass)) {
+					this.password = newPass;
+				} else {
+					System.out.println("New password is weak!");
+				}
+			} else {
+				System.out.println("Wrong old password entered!");
+			}
+		}
+		
 		public void listAllPosts() {
 			System.out.println("Posts: ");
 			for(Post p : this.posts) {

@@ -43,6 +43,19 @@ public class UserStorage { //class to store users
 			}
 		 }
 	}
+	 
+	 void deleteUser(User user) {
+		 if(user != null) {
+			synchronized (this.users) {
+				if (users.containsKey(user.getEmail())) {
+					System.out.println("Deleting user");
+					this.users.remove(user.getEmail());
+					user = null;
+					return;
+				}
+			}
+		 }
+	}
 
 	boolean checkIfUserExists(String email) { // email check
 		synchronized (this.users) {
