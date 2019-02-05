@@ -29,6 +29,7 @@ public class Settings {
 	public enum Statuses {
 		
 	}
+	
 
 	public enum Genders {
 		MALE,FAMALE,UNSPECIFIED;
@@ -42,6 +43,8 @@ public class Settings {
 			return false;
 		}
 	}
+	
+	
 	private User owner;
 	private String photo = systemUserAvatars[(int) (Math.random() * systemUserAvatars.length)];;
 	private String userName;

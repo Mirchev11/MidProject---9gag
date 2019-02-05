@@ -58,7 +58,8 @@ public class PostStorage {
 	}
 
 	// posts methods and distributing
-	void addMeme(Post newPost) {
+	
+		void addMeme(Post newPost) {
 		if (newPost != null && this.isValidSection(newPost.getSection())) {
 			this.posts.add(newPost);
 			if (this.sectionOfPosts.containsKey(newPost.getSection())) {

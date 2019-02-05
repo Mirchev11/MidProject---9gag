@@ -127,6 +127,8 @@ public class MenuForLoggedUsers9gag {
 			JButton btnSettings = new JButton("Settings   ");
 			btnSettings.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
+					SettingsWindow sw = new SettingsWindow(user);
+					sw.main();
 				}
 			});
 			mnNewMenu.add(btnSettings);
