@@ -76,7 +76,9 @@ public class UserStorage { //class to store users
 		return false;
 	}
 
-	
+	public User getUserFromStorage(String email){
+		return this.users.get(email);
+	}
 	
 
 	

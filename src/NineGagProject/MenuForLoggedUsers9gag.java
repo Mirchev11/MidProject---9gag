@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import com.sun.glass.ui.Menu;
+
 import javafx.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -25,36 +27,53 @@ public class MenuForLoggedUsers9gag {
 
 
 		private JFrame frame;
-		private JTextField textField;
-
+		private JTextField searchField;
+		private static User user;
 	    
+	
+		
 		/**
 		 * Launch the application.
 		 */
-		public static void main() {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						MenuForLoggedUsers9gag window = new MenuForLoggedUsers9gag();
-						window.frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+		
+		public static void main() {EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MenuForLoggedUsers9gag window = new MenuForLoggedUsers9gag(user);	
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			});
+			}
+		});
+			
 		}
-
+		
+//		protected void setUser(User us){
+//			 this.user = us;
+//		}
+		
 		/**
 		 * Create the application.
 		 */
+		
 		public MenuForLoggedUsers9gag() {
 			initialize();
 		}
+		
+		/**
+		 * @wbp.parser.constructor
+		 */
+		public MenuForLoggedUsers9gag(User us) {
+			this.user = us;
+			initialize();
+		}
 
+		
 		/**
 		 * Initialize the contents of the frame.
 		 */
-		private void initialize() { //startova stranica na 9gag
+		private void initialize( ) { //startova stranica na 9gag
 			
 			Border emptyBorder = BorderFactory.createEmptyBorder();
 			
@@ -71,27 +90,23 @@ public class MenuForLoggedUsers9gag {
 			frame.getContentPane().add(panel);
 			panel.setLayout(null);
 			
-			textField = new JTextField();
-			textField.setBounds(139, 14, 124, 20);
-			panel.add(textField);
-			textField.setColumns(10);
-			
-			JLabel lblSearch = new JLabel("Search");
-			lblSearch.setForeground(Color.GRAY);
-			lblSearch.setBounds(93, 17, 46, 14);
-			panel.add(lblSearch);
-			
+			searchField = new JTextField();
+			searchField.setBounds(139, 14, 124, 20);
+			panel.add(searchField);
+			searchField.setColumns(10);
+	
 			JButton btnUpload = new JButton("+ Upload");
 			btnUpload.addActionListener(new ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent arg0) {
-					CreateAPost.main();
+					CreateAPost cr = new CreateAPost(user);
+					cr.main();
 					frame.setVisible(false);
 				}
 			});
 			btnUpload.setBackground(SystemColor.textHighlight);
 			btnUpload.setForeground(SystemColor.text);
 			btnUpload.setFont(new Font("Tahoma", Font.BOLD, 15));
-			btnUpload.setBounds(385, 13, 99, 23);
+			btnUpload.setBounds(387, 11, 87, 23);
 			panel.add(btnUpload);
 			btnUpload.setBorder(emptyBorder);
 			
@@ -136,6 +151,18 @@ public class MenuForLoggedUsers9gag {
 			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 			lblNewLabel.setBackground(Color.WHITE);
+			
+			JButton btnNewButton = new JButton("Search");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent arg0) {
+					PostStorage.givePostStorage().giveSearchedPosts(searchField.getText());
+				}
+			});
+			btnNewButton.setBounds(60, 14, 69, 20);
+			panel.add(btnNewButton);
+			btnNewButton.setForeground(SystemColor.textInactiveText);
+			btnNewButton.setBackground(SystemColor.desktop);
+			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
 
 			
 			
@@ -157,19 +184,40 @@ public class MenuForLoggedUsers9gag {
 			btnHot.setBounds(0, 0, 89, 23);
 			panel_1.add(btnHot);
 			btnHot.setBorder(emptyBorder);
-			
+			btnHot.setBorder(emptyBorder);
 			
 			JButton btnFresh = new JButton("Fresh");
 			btnFresh.setBackground(SystemColor.menu);
 			btnFresh.setBounds(0, 41, 89, 23);
 			panel_1.add(btnFresh);
 			btnFresh.setBorder(emptyBorder);
-			
+			btnFresh.setBorder(emptyBorder);
 			JButton btnTrending = new JButton("Trending");
 			btnTrending.setBounds(0, 21, 89, 23);
 			panel_1.add(btnTrending);
 			btnTrending.setBackground(SystemColor.menu);
 			btnTrending.setBorder(emptyBorder);
+			btnTrending.setBorder(emptyBorder);
+			
+			
+			JButton btnFunny = new JButton("Funny");
+			btnFunny.setBackground(SystemColor.menu);
+			btnFunny.setBounds(0, 127, 89, 23);
+			panel_1.add(btnFunny);
+			btnFunny.setBorder(emptyBorder);
+			
+			JButton btnAnimals = new JButton("Animals");
+			btnAnimals.setBackground(SystemColor.menu);
+			btnAnimals.setBounds(0, 106, 89, 23);
+			panel_1.add(btnAnimals);
+			btnAnimals.setBorder(emptyBorder);
+			
+			JButton btnSport = new JButton("Sport");
+			btnSport.setBackground(SystemColor.menu);
+			btnSport.setBounds(0, 147, 89, 23);
+			panel_1.add(btnSport);
+			btnSport.setBorder(emptyBorder);
+			
 			
 			
 			JScrollBar scrollBar = new JScrollBar();

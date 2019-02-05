@@ -67,7 +67,7 @@ public class Post {
 		} else {
 			throw new NotLoggedInException("Not logged in user!");
 		}
-
+		this.showPost();
 	}
 
 	public Post(User user, String photo, String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException {
@@ -134,6 +134,7 @@ public class Post {
 	
 
 	public void showPost() {
+		System.out.println(this.user.getFullName());
 		System.out.println("-----------------------------------");
 		System.out.println("-----------------------------------");
 		System.out.println("Descripion: \n" + this.description);

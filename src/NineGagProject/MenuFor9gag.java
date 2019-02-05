@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
@@ -16,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.JScrollBar;
 import javax.swing.JTextField;
 import javax.swing.JRadioButtonMenuItem;
@@ -24,7 +26,7 @@ import javax.swing.JFormattedTextField;
 public class MenuFor9gag {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField searchField;
 
 	/**
 	 * Launch the application.
@@ -41,6 +43,7 @@ public class MenuFor9gag {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the application.
@@ -52,6 +55,8 @@ public class MenuFor9gag {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
+	Border emptyBorder = BorderFactory.createEmptyBorder();
 	private void initialize() { //startova stranica na 9gag
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.GRAY);
@@ -100,15 +105,22 @@ public class MenuFor9gag {
 		btnLogin.setBounds(296, 11, 89, 23);
 		panel.add(btnLogin);
 		
-		textField = new JTextField();
-		textField.setBounds(162, 14, 124, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		searchField = new JTextField();
+		searchField.setBounds(162, 14, 124, 20);
+		panel.add(searchField);
+		searchField.setColumns(10);
 		
-		JLabel lblSearch = new JLabel("Search");
-		lblSearch.setForeground(Color.GRAY);
-		lblSearch.setBounds(121, 17, 46, 14);
-		panel.add(lblSearch);
+		JButton button_3 = new JButton("Search");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PostStorage.givePostStorage().giveSearchedPosts(searchField.getText());
+			}
+		});
+		button_3.setForeground(SystemColor.textInactiveText);
+		button_3.setFont(new Font("Tahoma", Font.BOLD, 10));
+		button_3.setBackground(Color.BLACK);
+		button_3.setBounds(91, 13, 69, 20);
+		panel.add(button_3);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 42, 93, 419);
@@ -118,23 +130,44 @@ public class MenuFor9gag {
 		JLabel lblSections = new JLabel("Sections");
 		lblSections.setForeground(Color.LIGHT_GRAY);
 		lblSections.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSections.setBounds(10, 75, 93, 27);
+		lblSections.setBounds(10, 75, 79, 27);
 		panel_1.add(lblSections);
 		
 		JButton btnHot = new JButton("Hot");
 		btnHot.setBackground(SystemColor.menu);
 		btnHot.setBounds(0, 0, 89, 23);
 		panel_1.add(btnHot);
+		btnHot.setBorder(emptyBorder);
 		
 		JButton btnTrending = new JButton("Trending");
 		btnTrending.setBackground(SystemColor.menu);
 		btnTrending.setBounds(0, 21, 89, 23);
 		panel_1.add(btnTrending);
+		btnTrending.setBorder(emptyBorder);
 		
 		JButton btnFresh = new JButton("Fresh");
 		btnFresh.setBackground(SystemColor.menu);
 		btnFresh.setBounds(0, 41, 89, 23);
 		panel_1.add(btnFresh);
+		btnFresh.setBorder(emptyBorder);
+		
+		JButton btnFunny = new JButton("Funny");
+		btnFunny.setBackground(SystemColor.menu);
+		btnFunny.setBounds(0, 127, 89, 23);
+		panel_1.add(btnFunny);
+		btnFunny.setBorder(emptyBorder);
+		
+		JButton btnAnimals = new JButton("Animals");
+		btnAnimals.setBackground(SystemColor.menu);
+		btnAnimals.setBounds(0, 106, 89, 23);
+		panel_1.add(btnAnimals);
+		btnAnimals.setBorder(emptyBorder);
+		
+		JButton btnSport = new JButton("Sport");
+		btnSport.setBackground(SystemColor.menu);
+		btnSport.setBounds(0, 147, 89, 23);
+		panel_1.add(btnSport);
+		btnSport.setBorder(emptyBorder);
 		
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setForeground(SystemColor.textHighlight);

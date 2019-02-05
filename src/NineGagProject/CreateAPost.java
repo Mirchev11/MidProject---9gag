@@ -8,6 +8,9 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import sun.swing.SwingUtilities2.Section;
+
 import java.awt.SystemColor;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
@@ -20,9 +23,9 @@ public class CreateAPost {
 	private JFrame frame;
 	private JTextField filePath;
 	private JTextField description;
-	private JTextField textField_2;
-	private JTextField textField_3;
-
+	private JTextField textFieldTags;
+	private JTextField textFieldSection;
+	private static User user;
 	/**
 	 * Launch the application.
 	 */
@@ -30,7 +33,7 @@ public class CreateAPost {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CreateAPost window = new CreateAPost();
+					CreateAPost window = new CreateAPost(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +48,18 @@ public class CreateAPost {
 	public CreateAPost() {
 		initialize();
 	}
+	
+	/**
+	 * @wbp.parser.constructor
+	 */
 
+	public CreateAPost(User us){
+		this();
+		this.user = us;
+	}
+
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -86,10 +100,10 @@ public class CreateAPost {
 		tags.setBounds(10, 236, 87, 23);
 		frame.getContentPane().add(tags);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(99, 237, 249, 25);
-		frame.getContentPane().add(textField_2);
+		textFieldTags = new JTextField();
+		textFieldTags.setColumns(10);
+		textFieldTags.setBounds(99, 237, 249, 25);
+		frame.getContentPane().add(textFieldTags);
 		
 		JCheckBox chckbxIsThisSensitive = new JCheckBox("This is sensitive");
 		chckbxIsThisSensitive.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -124,12 +138,20 @@ public class CreateAPost {
 		JButton btnUpload = new JButton("Upload");
 		btnUpload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				try {
-//					Post post = new Post(null, null, null, false);
-//				} catch (NotLoggedInException e1) {
-//					// TODO Auto-generated catch block
-//					JOptionPane.showMessageDialog(null, "Please log in!", "Unloged user", JOptionPane.ERROR_MESSAGE);
-//				}
+				try {
+					try {
+						Post p = user.createAPost(filePath.getText(), description.getText(), textFieldSection.getText(), chckbxIsThisSensitive.isSelected());
+						if(textFieldTags.getText() != null){
+						String[] tags = textFieldTags.getText().split("[ ,]+");
+						p.addTagsToPost(tags);
+					}
+					} catch (InvalidSectionException | InvalidDataException e1) {
+						JOptionPane.showMessageDialog(null, "Bad input! Try again!", "Unloged user", JOptionPane.ERROR_MESSAGE);
+					}
+				} catch (NotLoggedInException e1) {
+					
+					JOptionPane.showMessageDialog(null, "Please log in!", "Unloged user", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			}
 		});
@@ -144,9 +166,9 @@ public class CreateAPost {
 		section.setBounds(10, 186, 87, 23);
 		frame.getContentPane().add(section);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(99, 186, 249, 23);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		textFieldSection = new JTextField();
+		textFieldSection.setBounds(99, 186, 249, 23);
+		frame.getContentPane().add(textFieldSection);
+		textFieldSection.setColumns(10);
 	}
 }

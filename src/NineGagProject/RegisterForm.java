@@ -83,10 +83,12 @@ public class RegisterForm { // forma za registraciq vzima konstructora ot User i
 					if (us != null) {
 						if (!NineGag.giveNineGag().getUserStorage().giveUserStorage().checkIfUserExists(emailField.getText())) {
 								NineGag.giveNineGag().getUserStorage().addUserToSite(us);
-							JOptionPane.showMessageDialog(null, "Welcome to 9gag!", "Your account is ready to use!",
+							JOptionPane.showMessageDialog(null, "Welcome to 9gag," + us.getFullName() + " !", "Your account is ready to use!",
 									JOptionPane.INFORMATION_MESSAGE);
 							frame.setVisible(false);
-							MenuForLoggedUsers9gag.main();
+							MenuForLoggedUsers9gag m = new MenuForLoggedUsers9gag(us);
+
+							m.main();
 						
 						} else {
 							JOptionPane.showMessageDialog(null, "User already exists!", "Try another email!",

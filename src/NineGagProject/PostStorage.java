@@ -176,6 +176,10 @@ public class PostStorage {
 				resultsFromSearch.add(p);
 			}
 		}
+		
+		for(Post p : resultsFromSearch){
+			p.showPost();
+		}
 		return resultsFromSearch;
 	}
 

@@ -107,9 +107,11 @@ public class Login_System { //napravih sistema za logvane na useri
 				String email = EmailField.getText();
 				if( UserStorage.giveUserStorage().checkIfUserExists(email)) {
 					if( NineGag.giveNineGag().getUserStorage().checkIfPasswordIsCorrect(email, password)) {
-						JOptionPane.showMessageDialog(null, "You logged in successfully", "Logged in!", JOptionPane.INFORMATION_MESSAGE);
+						User us = UserStorage.giveUserStorage().getUserFromStorage(email);
+						JOptionPane.showMessageDialog(null, "Welcome back " + us.getFullName(), "Logged in!", JOptionPane.INFORMATION_MESSAGE);
 						frame.setVisible(false);
-						MenuForLoggedUsers9gag.main();
+						MenuForLoggedUsers9gag m = new MenuForLoggedUsers9gag(us);
+						m.main();
 					}
 				} else {
 				JOptionPane.showMessageDialog(null, "Invalid loggin details!", "Login Error", JOptionPane.ERROR_MESSAGE);
