@@ -81,10 +81,10 @@ public class User {
 
 		public Post createAPost(String photo,String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException, InvalidDataException {
 			if(Helper.isStringValid(photo) && Helper.isStringValid(description) && Helper.isStringValid(section)) {
-				if(NineGag.isValidSection(section)) {
+				if(PostStorage.givePostStorage().isValidSection(section)) {
 					Post newPost = new Post(this,photo,description, section, isSensitive);
 					this.posts.add(newPost);
-					NineGag.giveNineGag().addMeme(newPost);
+					NineGag.giveNineGag().getPostStorage().addMeme(newPost);
 					return newPost;
 				} else {
 					throw new InvalidSectionException("Invalid section given!");
@@ -151,7 +151,7 @@ public class User {
 		
 		public void searching (String search){
 			if(Helper.isStringValid(search)) {
-				this.printFoundPosts(NineGag.giveNineGag().giveSearchedPosts(search));
+				this.printFoundPosts(NineGag.giveNineGag().getPostStorage().giveSearchedPosts(search));
 			} else {
 				System.out.println("Inavlid search");
 			}
@@ -173,7 +173,7 @@ public class User {
 		//TODO change it according to front end
 		public void addSectionToFavourites(String... sections ) {
 			for(String section : sections) {
-				if(section != null && NineGag.isValidSection(section)) {
+				if(section != null && PostStorage.givePostStorage().isValidSection(section)) {
 					this.favouriteSections.add(section);
 				} else {
 					System.out.println("There is no such section");

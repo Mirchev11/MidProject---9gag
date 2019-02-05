@@ -106,7 +106,7 @@ public class Login_System { //napravih sistema za logvane na useri
 				String password = passwordField.getText();
 				String email = EmailField.getText();
 				if( UserStorage.giveUserStorage().checkIfUserExists(email)) {
-					if( NineGag.giveNineGag().getStorage().checkIfPasswordIsCorrect(email, password)) {
+					if( NineGag.giveNineGag().getUserStorage().checkIfPasswordIsCorrect(email, password)) {
 						JOptionPane.showMessageDialog(null, "You logged in successfully", "Logged in!", JOptionPane.INFORMATION_MESSAGE);
 						frame.setVisible(false);
 						MenuForLoggedUsers9gag.main();

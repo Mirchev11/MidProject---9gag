@@ -72,7 +72,7 @@ public class Post {
 
 	public Post(User user, String photo, String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException {
 		this(user, photo, description);
-		if(NineGag.isValidSection(section)) {
+		if(PostStorage.givePostStorage().isValidSection(section)) {
 			this.section = section;
 		} else {
 			throw new InvalidSectionException("Invalid section given!");

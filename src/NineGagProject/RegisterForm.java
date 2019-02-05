@@ -81,8 +81,8 @@ public class RegisterForm { // forma za registraciq vzima konstructora ot User i
 				try {
 					User us = new User(fullNameField.getText(), passwordField.getText(), emailField.getText());
 					if (us != null) {
-						if (!NineGag.giveNineGag().getStorage().giveUserStorage().checkIfUserExists(emailField.getText())) {
-								NineGag.giveNineGag().getStorage().addUserToSite(us);
+						if (!NineGag.giveNineGag().getUserStorage().giveUserStorage().checkIfUserExists(emailField.getText())) {
+								NineGag.giveNineGag().getUserStorage().addUserToSite(us);
 							JOptionPane.showMessageDialog(null, "Welcome to 9gag!", "Your account is ready to use!",
 									JOptionPane.INFORMATION_MESSAGE);
 							frame.setVisible(false);
