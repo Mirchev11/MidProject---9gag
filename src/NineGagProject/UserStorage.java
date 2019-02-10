@@ -57,7 +57,7 @@ public class UserStorage { //class to store users
 		 }
 	}
 
-	boolean checkIfUserExists(String email) { // email check
+	public boolean checkIfUserExists(String email) { // email check
 		synchronized (this.users) {
 			if (users.containsKey(email)) {
 				return true;

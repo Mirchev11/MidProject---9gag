@@ -217,6 +217,11 @@ public class User {
 		
 	}
 	
+	void forgottenPass(String newPass) {
+		//TODO validate it
+		this.password = newPass;
+	}
+	
 	
 
 
