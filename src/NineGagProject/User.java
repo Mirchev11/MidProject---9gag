@@ -83,6 +83,10 @@ public class User {
 		//this.printUserInformation();
 	}
 	
+	public void setUserName() {
+		this.settings.setUserName(Helper.userNameMaker(this.email));
+	}
+	
 	//TODO just for testing; delete it afterwards
 		void printUserInformation() {
 			System.out.println("---------------- Start of Account Information ----------------");
@@ -90,7 +94,7 @@ public class User {
 			System.out.println("Password: " + this.password);
 			System.out.println("Email: " + this.email);
 			System.out.println("User name: " + settings.getUserName());
-			System.out.println("Date of creation: " + this.userCreationTime);
+			//System.out.println("Date of creation: " + this.userCreationTime);
 			System.out.println("---------------- End of Account Information ----------------");
 			System.out.println();
 			

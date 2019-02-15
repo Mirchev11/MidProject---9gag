@@ -3,7 +3,7 @@
     "fullName": "Ivan m",
     "password": "Cska1948",
     "email": "ivan@abv.bg",
-    "userCreationTime": {},
+    "userCreationTime": "2019-02-16T00:42:00",
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [
@@ -11,7 +11,7 @@
         "photo": "photo1",
         "description": "Mega qkata snimka, brat!",
         "isSensitive": false,
-        "postDate": {},
+        "postDate": "2019-02-16T00:42:00",
         "points": 0,
         "upvotes": 0,
         "section": "Animals",
@@ -22,12 +22,12 @@
         ],
         "comments": [
           {
-            "date": {},
+            "date": "2019-02-16T00:42:00",
             "content": "outer comment",
             "points": 0,
             "replies": [
               {
-                "date": {},
+                "date": "2019-02-16T00:42:00",
                 "content": "inner Comment",
                 "points": 0,
                 "replies": []
@@ -40,7 +40,7 @@
         "photo": "photo2",
         "description": "Malko tupa snimka, brat!",
         "isSensitive": true,
-        "postDate": {},
+        "postDate": "2019-02-16T00:42:00",
         "points": 0,
         "upvotes": 0,
         "section": "Funny",
@@ -59,7 +59,7 @@
     "fullName": "Ivan m2",
     "password": "Cska19482",
     "email": "ivan2@abv.bg",
-    "userCreationTime": {},
+    "userCreationTime": "2019-02-16T00:42:00",
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [],
@@ -71,7 +71,7 @@
     "fullName": "Ivan m3",
     "password": "Cska19483",
     "email": "ivan3@abv.bg",
-    "userCreationTime": {},
+    "userCreationTime": "2019-02-16T00:42:00",
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [],

@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.google.gson.annotations.Expose;
+
 
 public class Settings {
 	
@@ -44,15 +46,23 @@ public class Settings {
 		}
 	}
 	
-	
+	@Expose
 	private User owner;
-	private String photo = systemUserAvatars[(int) (Math.random() * systemUserAvatars.length)];;
+	@Expose
+	private String photo = systemUserAvatars[(int) (Math.random() * systemUserAvatars.length)];
+	@Expose
 	private String userName;
+	@Expose
 	private LocalDate birthDate;
+	@Expose
 	private Countries country;
+	@Expose
 	private String description;
+	@Expose
 	private Statuses status;
+	@Expose
 	private Genders gender;
+	@Expose
 	private boolean sensitiveContent;
 
 	
