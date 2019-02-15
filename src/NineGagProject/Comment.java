@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.gson.annotations.Expose;
+
 public class Comment {
+	@Expose
 	private LocalDateTime date;
+	@Expose
 	private String content;
+	@Expose
 	private int points;
+	@Expose
 	private List<Comment> replies;
 	private User user;
 	

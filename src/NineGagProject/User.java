@@ -15,6 +15,7 @@ import java.util.TreeSet;
 import javax.xml.bind.Validator;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
 
 import NineGagProject.Settings.Countries;
 import NineGagProject.Settings.Genders;
@@ -24,17 +25,27 @@ public class User {
 	public enum Genders {
 		MALE, FEMALE, UNSPECIFIED;
 	}
+	@Expose
 	private String fullName;
+	@Expose
 	private String password;
+	@Expose
 	private String email;
+	@Expose
 	private LocalDateTime userCreationTime;
+	@Expose
 	private boolean isLoggedIn;
 	
+	@Expose
 	private Set<Post> commentedPosts;
+	@Expose
 	private Set<Post> posts;
+	@Expose
 	private Set<Post> upvotes;
+	@Expose
 	private Set<String> favouriteSections;
 	
+	@Expose
 	private Settings settings;
 	
 	public User(String names,String pass,String email) throws InvalidDataException {
@@ -70,25 +81,6 @@ public class User {
 		this.userCreationTime = LocalDateTime.now();
 		
 		//this.printUserInformation();
-//		Gson gson = new Gson();
-//		String user = gson.toJson(this.email);
-//		File jsonStorage = new File("src\\NineGagProject\\jsonStorage.json");
-//		if (!jsonStorage.exists()) {
-//			try {
-//				jsonStorage.createNewFile();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		try (PrintWriter pw = new PrintWriter(jsonStorage)) {
-//			pw.println(this.email);
-//
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 	
 	//TODO just for testing; delete it afterwards
@@ -242,6 +234,12 @@ public class User {
 	
 	void forgottenPass(String newPass) {
 		this.password = newPass;
+	}
+
+	@Override
+	public String toString() {
+		return "User [fullName=" + fullName + ", password=" + password + ", email=" + email + ", userCreationTime="
+				+ userCreationTime + ", isLoggedIn=" + isLoggedIn +  ", upvotes=" + upvotes + ", favouriteSections=" + favouriteSections + "]";
 	}
 	
 	

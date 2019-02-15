@@ -48,25 +48,7 @@ public class NineGag {
 		this.allTags = new HashSet<String>();
 		this.usersStorage = UserStorage.giveUserStorage();
 		this.postsStorage = PostStorage.givePostStorage();
-		System.out.println("Izva");
-//		Gson gson = new Gson();
-//		String jsonUserStorage = gson.toJson(this.usersStorage);
-//		File jsonStorage = new File("src\\NineGagProject\\jsonStorage.json");
-//		if (!jsonStorage.exists()) {
-//			try {
-//				jsonStorage.createNewFile();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		try (PrintWriter pw = new PrintWriter(jsonStorage)) {
-//			pw.println(jsonUserStorage);
-//			System.out.println("Izva");
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 
 	}
 

@@ -1,20 +1,57 @@
 package NineGagProject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class UserStorage { //class to store users
 	
 	
-	private ConcurrentMap<String, User> users; // String - mail, User -user
+	private Map<String, User> users; // String - mail, User -user
 	private static UserStorage storage;
 	
 	
 	private UserStorage(){
-		this.users = new ConcurrentHashMap<String, User>();
-	
+		this.users = new HashMap<String, User>();
+		
+		
+		
 	}
+	
+	public void toJson() {
+		
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+		File jsonStorage = new File("src\\NineGagProject\\jsonStorage.json");
+		if (!jsonStorage.exists()) {
+			try {
+				jsonStorage.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		String jsonUserStorage = gson.toJson(new HashMap(this.users));
+		
+		try (PrintWriter pw = new PrintWriter(jsonStorage)) {
+		pw.println(jsonUserStorage);
+		System.out.println("Done");
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+		
+	}
+
 	
 	public static UserStorage giveUserStorage(){
 		if(UserStorage.storage == null){
@@ -22,6 +59,10 @@ public class UserStorage { //class to store users
 		}
 		
 		return UserStorage.storage;
+	}
+	
+	Map<String, User> getCopyOfUsers(){
+		return Collections.unmodifiableMap(users);
 	}
 	
 	// User methods - add,check, etc:

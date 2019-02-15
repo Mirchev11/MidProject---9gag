@@ -1,1 +1,82 @@
-ivan@abv.bg
+{
+  "ivan@abv.bg": {
+    "fullName": "Ivan m",
+    "password": "Cska1948",
+    "email": "ivan@abv.bg",
+    "userCreationTime": {},
+    "isLoggedIn": true,
+    "commentedPosts": [],
+    "posts": [
+      {
+        "photo": "photo1",
+        "description": "Mega qkata snimka, brat!",
+        "isSensitive": false,
+        "postDate": {},
+        "points": 0,
+        "upvotes": 0,
+        "section": "Animals",
+        "tags": [
+          "fun",
+          "qko",
+          "snimka"
+        ],
+        "comments": [
+          {
+            "date": {},
+            "content": "outer comment",
+            "points": 0,
+            "replies": [
+              {
+                "date": {},
+                "content": "inner Comment",
+                "points": 0,
+                "replies": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "photo": "photo2",
+        "description": "Malko tupa snimka, brat!",
+        "isSensitive": true,
+        "postDate": {},
+        "points": 0,
+        "upvotes": 0,
+        "section": "Funny",
+        "tags": [
+          "tag1",
+          "tag10"
+        ],
+        "comments": []
+      }
+    ],
+    "upvotes": [],
+    "favouriteSections": [],
+    "settings": {}
+  },
+  "ivan2@abv.bg": {
+    "fullName": "Ivan m2",
+    "password": "Cska19482",
+    "email": "ivan2@abv.bg",
+    "userCreationTime": {},
+    "isLoggedIn": true,
+    "commentedPosts": [],
+    "posts": [],
+    "upvotes": [],
+    "favouriteSections": [],
+    "settings": {}
+  },
+  "ivan3@abv.bg": {
+    "fullName": "Ivan m3",
+    "password": "Cska19483",
+    "email": "ivan3@abv.bg",
+    "userCreationTime": {},
+    "isLoggedIn": true,
+    "commentedPosts": [],
+    "posts": [],
+    "upvotes": [],
+    "favouriteSections": [],
+    "settings": {}
+  }
+}

@@ -12,22 +12,34 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.google.gson.annotations.Expose;
+
 public class Post {
 	
 	private static final int MAX_HOURS_FOR_COMMENTS_IN_FRESH = 2;
 	private static final int POINTS_FOR_HOT_COMMENTS = 5;
 
 	private User user;
+	@Expose
 	private String photo;
+	@Expose
 	private String description;
+	@Expose
 	private boolean isSensitive;
+	@Expose
 	private LocalDateTime postDate;
+	@Expose
 	private int points;
+	@Expose
 	private int upvotes;
+	@Expose
 	private String section;
 
+	@Expose
 	private Set<String> tags;
+	@Expose
 	private List<Comment> comments;
+	
 	private Set<Comment> freshComments;
 	private Set<Comment> hotComments;
 	
@@ -88,6 +100,11 @@ public class Post {
 			} catch (InvalidDataException e) {
 				System.out.println("Invalid content for comment!");
 			}
+		}
+	}
+	public void addComment(Comment comment) {
+		if (comment != null) {
+			this.comments.add(comment);
 		}
 	}
 	
