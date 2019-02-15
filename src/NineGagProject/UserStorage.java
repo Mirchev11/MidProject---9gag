@@ -10,8 +10,10 @@ public class UserStorage { //class to store users
 	private ConcurrentMap<String, User> users; // String - mail, User -user
 	private static UserStorage storage;
 	
+	
 	private UserStorage(){
 		this.users = new ConcurrentHashMap<String, User>();
+	
 	}
 	
 	public static UserStorage giveUserStorage(){
@@ -58,12 +60,10 @@ public class UserStorage { //class to store users
 	}
 
 	public boolean checkIfUserExists(String email) { // email check
-		synchronized (this.users) {
 			if (users.containsKey(email)) {
 				return true;
 			}
 			return false;
-		}
 	}
 
 	boolean checkIfPasswordIsCorrect(String email, String pass) { // pass check

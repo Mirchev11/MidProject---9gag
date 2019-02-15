@@ -1,5 +1,9 @@
 package NineGagProject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
@@ -9,6 +13,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.xml.bind.Validator;
+
+import com.google.gson.Gson;
 
 import NineGagProject.Settings.Countries;
 import NineGagProject.Settings.Genders;
@@ -64,6 +70,25 @@ public class User {
 		this.userCreationTime = LocalDateTime.now();
 		
 		//this.printUserInformation();
+//		Gson gson = new Gson();
+//		String user = gson.toJson(this.email);
+//		File jsonStorage = new File("src\\NineGagProject\\jsonStorage.json");
+//		if (!jsonStorage.exists()) {
+//			try {
+//				jsonStorage.createNewFile();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		try (PrintWriter pw = new PrintWriter(jsonStorage)) {
+//			pw.println(this.email);
+//
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	//TODO just for testing; delete it afterwards
@@ -89,11 +114,9 @@ public class User {
 				} else {
 					throw new InvalidSectionException("Invalid section given!");
 				}
-				
 			} else {
 				throw new InvalidDataException("Invalid data given for post!");
 			}
-			
 		}
 		
 		public void changePassword(String oldPass, String newPass) {
@@ -218,7 +241,6 @@ public class User {
 	}
 	
 	void forgottenPass(String newPass) {
-		//TODO validate it
 		this.password = newPass;
 	}
 	

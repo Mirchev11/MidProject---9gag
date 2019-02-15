@@ -81,11 +81,11 @@ public class Login_System { //napravih sistema za logvane na useri
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblPassword.setBounds(29, 150, 104, 21);
+		lblPassword.setBounds(29, 119, 104, 21);
 		frame.getContentPane().add(lblPassword);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(148, 150, 213, 24);
+		passwordField.setBounds(148, 121, 213, 24);
 		frame.getContentPane().add(passwordField);
 		
 		JSeparator separator = new JSeparator();
@@ -164,9 +164,21 @@ public class Login_System { //napravih sistema za logvane na useri
 		btnNewButton_3.setForeground(SystemColor.text);
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNewButton_3.setBackground(SystemColor.textHighlight);
-		btnNewButton_3.setBounds(382, 105, 70, 39);
+		btnNewButton_3.setBounds(404, 50, 70, 39);
 		frame.getContentPane().add(btnNewButton_3);
 		
+		JButton btnForgottenPassword = new JButton("Forgotten password");
+		btnForgottenPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ResetPasswordWindow rsw = new ResetPasswordWindow();
+				rsw.main();
+			}
+		});
+		btnForgottenPassword.setForeground(Color.WHITE);
+		btnForgottenPassword.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnForgottenPassword.setBackground(SystemColor.textHighlight);
+		btnForgottenPassword.setBounds(305, 156, 157, 20);
+		frame.getContentPane().add(btnForgottenPassword);
+		
 	}
-
 }

@@ -78,14 +78,14 @@ public class PostStorage {
 		}
 	}
 	
-//	Set<String> getAllTags(){
-//		Set<String> tags = new HashSet<String>();
-//		for (Iterator<Post> it = posts.iterator(); it.hasNext();) {
-//			Post p = it.next();
-//			tags.addAll(p.getAllTags());
-//		}
-//		return tags;
-//	}
+		//	Set<String> getAllTags(){
+		//		Set<String> tags = new HashSet<String>();
+		//		for (Iterator<Post> it = posts.iterator(); it.hasNext();) {
+		//			Post p = it.next();
+		//			tags.addAll(p.getAllTags());
+		//		}
+		//		return tags;
+		//	}
 	
 
 	public boolean isValidSection(String section) {
@@ -113,7 +113,6 @@ public class PostStorage {
 	}
 
 	void putInHot() {
-
 		for (Iterator<Post> it = posts.iterator(); it.hasNext();) {
 			Post p = it.next();
 			if (p.getPoints() > POINTS_FOR_HOT_POSTS) {

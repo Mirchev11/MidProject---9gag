@@ -11,6 +11,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -21,9 +25,11 @@ import java.awt.Toolkit;
 
 import javax.swing.UIManager;
 
+import com.google.gson.Gson;
 import com.sun.glass.events.WindowEvent;
 
-public class RegisterForm { // forma za registraciq vzima konstructora ot User i suzdava obekt na bazata na
+public class RegisterForm { // forma za registraciq vzima konstructora ot User i
+							// suzdava obekt na bazata na
 							// vuvedenite v poletata textove
 							// ako ne vadi message board.
 
@@ -79,22 +85,23 @@ public class RegisterForm { // forma za registraciq vzima konstructora ot User i
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					User us = new User(fullNameField.getText(), passwordField.getText(), emailField.getText());
-					if (us != null) {
-						if (!NineGag.giveNineGag().getUserStorage().giveUserStorage().checkIfUserExists(emailField.getText())) {
-								NineGag.giveNineGag().getUserStorage().addUserToSite(us);
-							JOptionPane.showMessageDialog(null, "Welcome to 9gag," + us.getFullName() + " !", "Your account is ready to use!",
-									JOptionPane.INFORMATION_MESSAGE);
-							frame.setVisible(false);
-							MenuForLoggedUsers9gag m = new MenuForLoggedUsers9gag(us);
 
-							m.main();
+					if (!UserStorage.giveUserStorage().checkIfUserExists(emailField.getText())) {
+						User us = new User(fullNameField.getText(), passwordField.getText(), emailField.getText());
+						NineGag.giveNineGag().getUserStorage().addUserToSite(us);
 						
-						} else {
-							JOptionPane.showMessageDialog(null, "User already exists!", "Try another email!",
-									JOptionPane.ERROR_MESSAGE);
-						}
+						JOptionPane.showMessageDialog(null, "Welcome to 9gag," + us.getFullName() + " !",
+								"Your account is ready to use!", JOptionPane.INFORMATION_MESSAGE);
+						frame.setVisible(false);
+						MenuForLoggedUsers9gag m = new MenuForLoggedUsers9gag(us);
+
+						m.main();
+
+					} else {
+						JOptionPane.showMessageDialog(null, "User already exists!", "Try another email!",
+								JOptionPane.ERROR_MESSAGE);
 					}
+
 				} catch (InvalidDataException e1) {
 					JOptionPane.showMessageDialog(null, "Invalid entry!", "Signup Error", JOptionPane.ERROR_MESSAGE);
 				}
