@@ -1,55 +1,66 @@
 {
-  "drago19@abv.bg": {
-    "fullName": "Dragan Petrov",
-    "password": "DragoUbiva19",
-    "email": "drago19@abv.bg",
-    "userCreationTime": "2019-02-16T18:49:49",
-    "isLoggedIn": true,
-    "commentedPosts": [],
-    "posts": [],
-    "upvotes": [],
-    "favouriteSections": [],
-    "settings": {
-      "photo": "photo20",
-      "userName": "drago19",
-      "sensitiveContent": false
-    }
-  },
   "ivan@abv.bg": {
     "fullName": "Ivan m",
     "password": "Cska1948",
     "email": "ivan@abv.bg",
-<<<<<<< HEAD
-    "userCreationTime": "2019-02-16T17:24:27",
+    "userCreationTime": "2019-02-16T23:07:38",
     "isLoggedIn": true,
-    "commentedPosts": [],
+    "commentedPosts": [
+      {
+        "photo": "photo12",
+        "description": "Mega qkata snimka, brat!22",
+        "isSensitive": false,
+        "postDate": "2019-02-16T23:07:38",
+        "points": 0,
+        "upvotes": 0,
+        "section": "Animals",
+        "tags": [],
+        "comments": [
+          {
+            "date": "2019-02-16T23:07:38",
+            "content": "commenting this",
+            "points": 0,
+            "replies": [
+              {
+                "date": "2019-02-16T23:07:38",
+                "content": "this is my reply",
+                "points": 0,
+                "replies": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "posts": [
       {
         "photo": "photo1",
         "description": "Mega qkata snimka, brat!",
         "isSensitive": false,
-        "postDate": "2019-02-16T17:24:27",
+        "postDate": "2019-02-16T23:07:38",
         "points": 0,
         "upvotes": 0,
         "section": "Animals",
         "tags": [
           "fun",
+          "fun22",
           "qko",
-          "snimka"
+          "qko22",
+          "snimka",
+          "snimka22"
         ],
         "comments": [
           {
-            "date": "2019-02-16T17:24:27",
-            "content": "outer comment",
+            "date": "2019-02-16T23:07:38",
+            "content": "usi2 comment",
             "points": 0,
-            "replies": [
-              {
-                "date": "2019-02-16T17:24:27",
-                "content": "inner Comment",
-                "points": 0,
-                "replies": []
-              }
-            ]
+            "replies": []
+          },
+          {
+            "date": "2019-02-16T23:07:38",
+            "content": "usi3 comment",
+            "points": 0,
+            "replies": []
           }
         ]
       },
@@ -57,7 +68,7 @@
         "photo": "photo2",
         "description": "Malko tupa snimka, brat!",
         "isSensitive": true,
-        "postDate": "2019-02-16T17:24:27",
+        "postDate": "2019-02-16T23:07:38",
         "points": 0,
         "upvotes": 0,
         "section": "Funny",
@@ -70,75 +81,134 @@
     ],
     "upvotes": [],
     "favouriteSections": [],
+    "notifications": [],
     "settings": {
-      "photo": "photo10",
-=======
-    "userCreationTime": "2019-02-16T18:46:55",
-    "isLoggedIn": true,
-    "commentedPosts": [],
-    "posts": [],
-    "upvotes": [],
-    "favouriteSections": [],
-    "settings": {
-      "photo": "photo5",
->>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
+      "photo": "photo11",
       "userName": "ivan",
       "sensitiveContent": false
     }
   },
-<<<<<<< HEAD
   "ivan2@abv.bg": {
     "fullName": "Ivan m2",
     "password": "Cska19482",
     "email": "ivan2@abv.bg",
-    "userCreationTime": "2019-02-16T17:24:27",
-=======
-  "mPetrov23@abv.bg": {
-    "fullName": "Mitko Petrov",
-    "password": "MitakaBaby23",
-    "email": "mPetrov23@abv.bg",
-    "userCreationTime": "2019-02-16T18:46:55",
->>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
+    "userCreationTime": "2019-02-16T23:07:38",
     "isLoggedIn": true,
-    "commentedPosts": [],
-    "posts": [],
+    "commentedPosts": [
+      {
+        "photo": "photo1",
+        "description": "Mega qkata snimka, brat!",
+        "isSensitive": false,
+        "postDate": "2019-02-16T23:07:38",
+        "points": 0,
+        "upvotes": 0,
+        "section": "Animals",
+        "tags": [
+          "fun",
+          "fun22",
+          "qko",
+          "qko22",
+          "snimka",
+          "snimka22"
+        ],
+        "comments": [
+          {
+            "date": "2019-02-16T23:07:38",
+            "content": "usi2 comment",
+            "points": 0,
+            "replies": []
+          },
+          {
+            "date": "2019-02-16T23:07:38",
+            "content": "usi3 comment",
+            "points": 0,
+            "replies": []
+          }
+        ]
+      }
+    ],
+    "posts": [
+      {
+        "photo": "photo12",
+        "description": "Mega qkata snimka, brat!22",
+        "isSensitive": false,
+        "postDate": "2019-02-16T23:07:38",
+        "points": 0,
+        "upvotes": 0,
+        "section": "Animals",
+        "tags": [],
+        "comments": [
+          {
+            "date": "2019-02-16T23:07:38",
+            "content": "commenting this",
+            "points": 0,
+            "replies": [
+              {
+                "date": "2019-02-16T23:07:38",
+                "content": "this is my reply",
+                "points": 0,
+                "replies": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "upvotes": [],
     "favouriteSections": [],
+    "notifications": [],
     "settings": {
-<<<<<<< HEAD
-      "photo": "photo11",
+      "photo": "photo8",
       "userName": "ivan2",
-=======
-      "photo": "photo1",
-      "userName": "mPetrov23",
->>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
       "sensitiveContent": false
     }
   },
   "ivan3@abv.bg": {
     "fullName": "Ivan m3",
-    "password": "Cska1948",
+    "password": "Cska19483",
     "email": "ivan3@abv.bg",
-<<<<<<< HEAD
-    "userCreationTime": "2019-02-16T17:24:27",
-=======
-    "userCreationTime": "2019-02-16T18:46:55",
->>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
+    "userCreationTime": "2019-02-16T23:07:38",
     "isLoggedIn": true,
-    "commentedPosts": [],
+    "commentedPosts": [
+      {
+        "photo": "photo1",
+        "description": "Mega qkata snimka, brat!",
+        "isSensitive": false,
+        "postDate": "2019-02-16T23:07:38",
+        "points": 0,
+        "upvotes": 0,
+        "section": "Animals",
+        "tags": [
+          "fun",
+          "fun22",
+          "qko",
+          "qko22",
+          "snimka",
+          "snimka22"
+        ],
+        "comments": [
+          {
+            "date": "2019-02-16T23:07:38",
+            "content": "usi2 comment",
+            "points": 0,
+            "replies": []
+          },
+          {
+            "date": "2019-02-16T23:07:38",
+            "content": "usi3 comment",
+            "points": 0,
+            "replies": []
+          }
+        ]
+      }
+    ],
     "posts": [],
     "upvotes": [],
     "favouriteSections": [],
+    "notifications": [],
     "settings": {
-      "photo": "photo16",
+      "photo": "photo6",
       "userName": "ivan3",
-<<<<<<< HEAD
-=======
-      "birthDate": {},
-      "country": "Aruba",
-      "description": "Some funny things about you",
-      "gender": "MALE",
->>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
       "sensitiveContent": false
     }
   }
