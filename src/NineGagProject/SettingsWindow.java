@@ -40,11 +40,11 @@ public class SettingsWindow {
 	private JTextField month;
 	private JTextField day;
 	private JTextField txtSomeFunnyThings;
-	private static User us;
+	private User us;
 	/**
 	 * Launch the application.
 	 */
-	public static void main() {
+	public void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

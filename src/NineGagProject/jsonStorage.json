@@ -209,6 +209,31 @@
     "settings": {
       "photo": "photo6",
       "userName": "ivan3",
+      "birthDate": {},
+      "country": "Argentina",
+      "description": "Something killing",
+      "gender": "MALE",
+      "sensitiveContent": false
+    }
+  },
+  "DKiller23@abv.bg": {
+    "fullName": "Dragomir Dragoev",
+    "password": "Drago23Baby",
+    "email": "DKiller23@abv.bg",
+    "userCreationTime": "2019-02-16T23:22:55",
+    "isLoggedIn": true,
+    "commentedPosts": [],
+    "posts": [],
+    "upvotes": [],
+    "favouriteSections": [],
+    "notifications": [],
+    "settings": {
+      "photo": "photo12",
+      "userName": "DKiller23",
+      "birthDate": {},
+      "country": "Aruba",
+      "description": "Im a Killer baby",
+      "gender": "MALE",
       "sensitiveContent": false
     }
   }

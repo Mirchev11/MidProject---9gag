@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -45,7 +46,7 @@ public class Demo {
 //		storage.toJson();
 		
 		storage.loadJson("src\\NineGagProject\\jsonStorage.json");
-		storage.setUserNames();
+//		storage.setUserNames();
 		storage.printAllUsers();
 
 		
@@ -66,14 +67,14 @@ public class Demo {
 		
 //	Ads ad = new Ads();
 //	ad.start();
-		 
+//		 
 		
 		 
 		
+	System.out.println(Arrays.toString(PostStorage.givePostStorage().getPosts()));
 		
 		
-		
-		//MenuFor9gag.main();
+		MenuFor9gag.main();
 		
 	}
 

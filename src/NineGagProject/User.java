@@ -26,7 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
-
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 import NineGagProject.Settings.Genders;
 import NineGagProject.Settings.Statuses;
@@ -103,6 +103,14 @@ public class User {
 	public void setUserName() {
 		this.settings.setUserName(Helper.userNameMaker(this.email));
 	}
+	public Set<Post> getPosts(){
+		for(Post p : this.posts){
+			p.setUser(this);
+		}
+		return this.posts;
+	}
+	
+	
 
 	// TODO just for testing; delete it afterwards
 	void printUserInformation() {

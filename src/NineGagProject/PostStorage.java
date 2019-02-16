@@ -3,6 +3,7 @@ package NineGagProject;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -44,7 +45,17 @@ public class PostStorage {
 
 	public PostStorage() {
 		this.fresh = new TreeSet<Post>((post1, post2) -> post1.getPostDate().compareTo(post2.getPostDate()));
-		this.posts = new TreeSet<Post>((post1, post2) -> post1.getPostDate().compareTo(post2.getPostDate()));
+		this.posts = new TreeSet<Post>(new Comparator<Post>(){
+
+			@Override
+			public int compare(Post o1, Post o2) {
+				if(o1.getPostDate().equals(o2.getPostDate())){
+					return o1.hashCode()-o2.hashCode();
+				}
+				return o1.getPostDate().compareTo(o2.getPostDate());
+			}
+			
+		});
 		this.hotPosts = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
 		this.trending = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
 		this.sectionOfPosts = new HashMap<String, Set<Post>>(); // ???
@@ -87,7 +98,26 @@ public class PostStorage {
 		//		return tags;
 		//	}
 	
+		public void addPostForUserWhenLoading(Set<Post> posts){
+//			System.out.println(this.posts.size() + " ima tolkova posta");
+			for(Post p : posts){
+				this.posts.add(p);
+			}
+		}
 
+		public String[] getPosts(){
+			ArrayList<String> ps = new ArrayList<>();
+			
+			for(Post p : this.posts){
+				String pos = p.toString();
+				ps.add(pos);
+			}
+			String[] posts = new String[ps.size()];
+			posts = ps.toArray(posts);
+			return posts;
+			
+		}
+		
 	public boolean isValidSection(String section) {
 		boolean isValid = false;
 		if(Helper.isStringValid(section)) {
