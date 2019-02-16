@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -44,6 +45,8 @@ public class User {
 	private Set<Post> upvotes;
 	@Expose
 	private Set<String> favouriteSections;
+	@Expose
+	private Set<Notification> notifications;
 	
 	@Expose
 	private Settings settings;
@@ -76,6 +79,7 @@ public class User {
 		this.posts = new TreeSet<Post>((pos1,pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
 		this.upvotes = new TreeSet<Post>((pos1,pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
 		this.favouriteSections = new LinkedHashSet<String>();
+		this.notifications = new LinkedHashSet<>();
 		
 		this.isLoggedIn = true;
 		this.userCreationTime = LocalDateTime.now();
@@ -149,12 +153,24 @@ public class User {
 			}
 		}
 		
-		public void writeAComment(Post p,String comment) {
+		public Comment writeAComment(Post p,String comment) throws InvalidDataException {
 			if(p != null && Helper.isStringValid(comment)) {
-				p.addComment(comment);
+				Comment c = new Comment(comment);
+				p.addComment(c);
+				c.setUser(this);
 				this.commentedPosts.add(p);
+				return c;
 			} else {
-				System.out.println("It was not possible to write a comment!");
+				throw new InvalidDataException("Could not write a comment");
+			}
+			
+		}
+		
+		public void writeAReply(Comment comment,String reply) throws InvalidDataException {
+			if(Helper.isStringValid(reply)) {
+				Comment c = new Comment(reply);
+				c.setUser(this);
+				comment.addReplie(c);
 			}
 			
 		}
@@ -206,6 +222,48 @@ public class User {
 				System.out.println(s);
 			}
 				 
+		}
+		
+		public void putNotifications() {
+			for(Post p : posts) {
+				List<Comment> comments = p.getCommentsCollection();
+				for(Comment c : comments) {
+					if(!c.getUser().equals(this) ) {
+						notifications.add(new Notification("This user " +  c.getUser().getFullName() + " has commented the following: " + c.getContent() + "; on one of your posts with this description: " + p.getDescription()));
+						List<Comment> replies = c.getReplies();
+						if(!replies.isEmpty()) {
+							for(Comment r : replies) {
+								if(!r.getUser().equals(this) ) {
+									notifications.add(new Notification("This user " +  r.getUser().getFullName() + " has replied the following: " + r.getContent() + "; on your comment: " + c.getContent() + " in the the post with this description: " + p.getDescription()));
+								}
+							}
+						}
+					}
+				}
+			}
+			for(Post p : commentedPosts) {
+				List<Comment> comments = p.getCommentsCollection();
+				for(Comment c : comments) {
+					if(c.getUser().equals(this)) {
+						List<Comment> replies = c.getReplies();
+						if(!replies.isEmpty()) {
+							for(Comment r : replies) {
+								if(!r.getUser().equals(this) ) {
+									notifications.add(new Notification("This user " +  r.getUser().getFullName() + " has replied the following: " + r.getContent() + "; on your comment: " + c.getContent() + " in the the post with this description: " + p.getDescription()));
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		public void showMyNotifications() {
+			if(!notifications.isEmpty()) {
+				for(Notification n : notifications) {
+					System.out.println(n);
+				}
+			}
 		}
 
 	protected String getFullName() {

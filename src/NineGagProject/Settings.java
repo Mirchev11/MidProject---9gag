@@ -46,7 +46,7 @@ public class Settings {
 		}
 	}
 	
-	@Expose
+	
 	private User owner;
 	@Expose
 	private String photo = systemUserAvatars[(int) (Math.random() * systemUserAvatars.length)];

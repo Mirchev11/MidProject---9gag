@@ -3,7 +3,7 @@
     "fullName": "Ivan m",
     "password": "Cska1948",
     "email": "ivan@abv.bg",
-    "userCreationTime": "2019-02-16T00:42:00",
+    "userCreationTime": "2019-02-16T17:24:27",
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [
@@ -11,7 +11,7 @@
         "photo": "photo1",
         "description": "Mega qkata snimka, brat!",
         "isSensitive": false,
-        "postDate": "2019-02-16T00:42:00",
+        "postDate": "2019-02-16T17:24:27",
         "points": 0,
         "upvotes": 0,
         "section": "Animals",
@@ -22,12 +22,12 @@
         ],
         "comments": [
           {
-            "date": "2019-02-16T00:42:00",
+            "date": "2019-02-16T17:24:27",
             "content": "outer comment",
             "points": 0,
             "replies": [
               {
-                "date": "2019-02-16T00:42:00",
+                "date": "2019-02-16T17:24:27",
                 "content": "inner Comment",
                 "points": 0,
                 "replies": []
@@ -40,7 +40,7 @@
         "photo": "photo2",
         "description": "Malko tupa snimka, brat!",
         "isSensitive": true,
-        "postDate": "2019-02-16T00:42:00",
+        "postDate": "2019-02-16T17:24:27",
         "points": 0,
         "upvotes": 0,
         "section": "Funny",
@@ -53,30 +53,42 @@
     ],
     "upvotes": [],
     "favouriteSections": [],
-    "settings": {}
+    "settings": {
+      "photo": "photo10",
+      "userName": "ivan",
+      "sensitiveContent": false
+    }
   },
   "ivan2@abv.bg": {
     "fullName": "Ivan m2",
     "password": "Cska19482",
     "email": "ivan2@abv.bg",
-    "userCreationTime": "2019-02-16T00:42:00",
+    "userCreationTime": "2019-02-16T17:24:27",
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [],
     "upvotes": [],
     "favouriteSections": [],
-    "settings": {}
+    "settings": {
+      "photo": "photo11",
+      "userName": "ivan2",
+      "sensitiveContent": false
+    }
   },
   "ivan3@abv.bg": {
     "fullName": "Ivan m3",
     "password": "Cska19483",
     "email": "ivan3@abv.bg",
-    "userCreationTime": "2019-02-16T00:42:00",
+    "userCreationTime": "2019-02-16T17:24:27",
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [],
     "upvotes": [],
     "favouriteSections": [],
-    "settings": {}
+    "settings": {
+      "photo": "photo16",
+      "userName": "ivan3",
+      "sensitiveContent": false
+    }
   }
 }

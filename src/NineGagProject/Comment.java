@@ -55,9 +55,10 @@ public class Comment {
 		
 	}
 	
-//	private List<Comment> getReplies(){
-//		return this.replies;
-//	}
+	public List<Comment> getReplies(){
+		List<Comment> copy  = new ArrayList<Comment>(replies);
+		return copy;
+	}
 	
 	//TODO ne trqbva li user-a da trie komentara a ne samiq komentar da trie sebe si
 	protected void removeRepplie(Comment c) { //zaradi composite patterna se nalaga edin vid rekursivno da obikalqme komentarite i da gi triem;
@@ -93,6 +94,14 @@ public class Comment {
 		if(this.points >= 0) {
 			this.points--;
 		}
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

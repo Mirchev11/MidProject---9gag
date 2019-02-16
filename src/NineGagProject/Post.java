@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -79,7 +81,7 @@ public class Post {
 		} else {
 			throw new NotLoggedInException("Not logged in user!");
 		}
-		this.showPost();
+		//this.showPost();
 	}
 
 	public Post(User user, String photo, String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException {
@@ -170,6 +172,12 @@ public class Post {
 			c.printComment();// da izvadq metod, koito mi printi komentara.
 		}
 	}
+	
+	public List<Comment> getCommentsCollection() {
+		List<Comment> copy = new ArrayList<Comment>(comments);
+
+		return copy;
+	}
 
 	public void addTagsToPost(String... tags) {
 		for (String tag : tags) {
@@ -230,6 +238,10 @@ public class Post {
 		return "Post [user=" + user + ", photo=" + photo + ", description=" + description + ", isSensitive="
 				+ isSensitive + ", postDate=" + postDate + ", points=" + points + ", upvotes=" + upvotes + ", tags="
 				+ tags + "]";
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	
