@@ -144,6 +144,7 @@ public class CreateAPost {
 						if(textFieldTags.getText() != null){
 						String[] tags = textFieldTags.getText().split("[ ,]+");
 						p.addTagsToPost(tags);
+						UserStorage.giveUserStorage().toJson();
 					}
 					} catch (InvalidSectionException | InvalidDataException e1) {
 						JOptionPane.showMessageDialog(null, "Bad input! Try again!", "Unloged user", JOptionPane.ERROR_MESSAGE);

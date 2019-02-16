@@ -1,82 +1,70 @@
 {
+  "drago19@abv.bg": {
+    "fullName": "Dragan Petrov",
+    "password": "DragoUbiva19",
+    "email": "drago19@abv.bg",
+    "userCreationTime": "2019-02-16T18:49:49",
+    "isLoggedIn": true,
+    "commentedPosts": [],
+    "posts": [],
+    "upvotes": [],
+    "favouriteSections": [],
+    "settings": {
+      "photo": "photo20",
+      "userName": "drago19",
+      "sensitiveContent": false
+    }
+  },
   "ivan@abv.bg": {
     "fullName": "Ivan m",
     "password": "Cska1948",
     "email": "ivan@abv.bg",
-    "userCreationTime": "2019-02-16T00:42:00",
-    "isLoggedIn": true,
-    "commentedPosts": [],
-    "posts": [
-      {
-        "photo": "photo1",
-        "description": "Mega qkata snimka, brat!",
-        "isSensitive": false,
-        "postDate": "2019-02-16T00:42:00",
-        "points": 0,
-        "upvotes": 0,
-        "section": "Animals",
-        "tags": [
-          "fun",
-          "qko",
-          "snimka"
-        ],
-        "comments": [
-          {
-            "date": "2019-02-16T00:42:00",
-            "content": "outer comment",
-            "points": 0,
-            "replies": [
-              {
-                "date": "2019-02-16T00:42:00",
-                "content": "inner Comment",
-                "points": 0,
-                "replies": []
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "photo": "photo2",
-        "description": "Malko tupa snimka, brat!",
-        "isSensitive": true,
-        "postDate": "2019-02-16T00:42:00",
-        "points": 0,
-        "upvotes": 0,
-        "section": "Funny",
-        "tags": [
-          "tag1",
-          "tag10"
-        ],
-        "comments": []
-      }
-    ],
-    "upvotes": [],
-    "favouriteSections": [],
-    "settings": {}
-  },
-  "ivan2@abv.bg": {
-    "fullName": "Ivan m2",
-    "password": "Cska19482",
-    "email": "ivan2@abv.bg",
-    "userCreationTime": "2019-02-16T00:42:00",
+    "userCreationTime": "2019-02-16T18:46:55",
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [],
     "upvotes": [],
     "favouriteSections": [],
-    "settings": {}
+    "settings": {
+      "photo": "photo5",
+      "userName": "ivan",
+      "sensitiveContent": false
+    }
+  },
+  "mPetrov23@abv.bg": {
+    "fullName": "Mitko Petrov",
+    "password": "MitakaBaby23",
+    "email": "mPetrov23@abv.bg",
+    "userCreationTime": "2019-02-16T18:46:55",
+    "isLoggedIn": true,
+    "commentedPosts": [],
+    "posts": [],
+    "upvotes": [],
+    "favouriteSections": [],
+    "settings": {
+      "photo": "photo1",
+      "userName": "mPetrov23",
+      "sensitiveContent": false
+    }
   },
   "ivan3@abv.bg": {
     "fullName": "Ivan m3",
-    "password": "Cska19483",
+    "password": "Cska1948",
     "email": "ivan3@abv.bg",
-    "userCreationTime": "2019-02-16T00:42:00",
+    "userCreationTime": "2019-02-16T18:46:55",
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [],
     "upvotes": [],
     "favouriteSections": [],
-    "settings": {}
+    "settings": {
+      "photo": "photo16",
+      "userName": "ivan3",
+      "birthDate": {},
+      "country": "Aruba",
+      "description": "Some funny things about you",
+      "gender": "MALE",
+      "sensitiveContent": false
+    }
   }
 }

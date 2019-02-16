@@ -14,19 +14,7 @@ public class Settings {
 			"photo6", "photo7", "photo8", "photo9", "photo10", "photo11", "photo12", "photo13", "photo14", 
 			"photo15", "photo16", "photo17", "photo18", "photo19", "photo20", "photo21", "photo22", "photo23"};
 	
-	public enum Countries {
-		ANDORA,BUGARIA,CAMEROON;
-		
-		
-		public static boolean contains(Countries country) {
-			for(Countries c : Countries.values()) {
-				if(country.equals(c)) {
-					return true;
-				}
-			}
-			return false;
-		}
-	}
+	
 
 	public enum Statuses {
 		
@@ -35,18 +23,8 @@ public class Settings {
 
 	public enum Genders {
 		MALE,FAMALE,UNSPECIFIED;
-		
-		public static boolean contains(Genders gender) {
-			for(Genders g : Genders.values()) {
-				if(gender.equals(g)) {
-					return true;
-				}
-			}
-			return false;
-		}
 	}
 	
-	@Expose
 	private User owner;
 	@Expose
 	private String photo = systemUserAvatars[(int) (Math.random() * systemUserAvatars.length)];
@@ -55,7 +33,7 @@ public class Settings {
 	@Expose
 	private LocalDate birthDate;
 	@Expose
-	private Countries country;
+	private String country;
 	@Expose
 	private String description;
 	@Expose
@@ -94,39 +72,32 @@ public class Settings {
 	
 	//date is in format yyyy-mm-dd 
 	//TODO change regex to match other date formats
-	public Settings birthDate(String date) throws InvalidDataException {
+	public void birthDate(String date) throws InvalidDataException {
 		Helper.FormattedDateMatcher matcher = new Helper.FormattedDateMatcher();
 		if(Helper.isStringValid(date) && matcher.matches(date)) {
 			this.birthDate = LocalDate.parse(date);
-			
 		} 
-		return this;
+
 	}
 	
-	public Settings country(Countries country) {
-		if(Countries.contains(country)) {
+	public void country(String country) {
 			this.country = country;
 		}
-		return this;
-	}
 	
-	public Settings description(String description) {
+	
+	public void description(String description) {
 		if(description != null) {
 			this.description = description;
 		}
-		return this;
+
 	}
 	
-	public Settings gender(Genders gender) {
-		if(Genders.contains(gender)) {
+	public void gender(Genders gender) {
 			this.gender = gender;
-		}
-		return this;
 	}
 	
-	public Settings sensitiveContent(Boolean sensitive) {
+	public void sensitiveContent(Boolean sensitive) {
 		this.sensitiveContent = sensitive;
-		return this;
 	}
 	
 	protected String getCountry() {

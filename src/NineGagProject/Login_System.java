@@ -117,7 +117,6 @@ public class Login_System { //napravih sistema za logvane na useri
 				JOptionPane.showMessageDialog(null, "Invalid loggin details!", "Login Error", JOptionPane.ERROR_MESSAGE);
 				}
 				
-				
 			}
 		});
 		btnNewButton.setBounds(29, 198, 118, 45);
