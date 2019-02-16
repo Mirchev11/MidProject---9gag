@@ -9,11 +9,13 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -50,6 +52,7 @@ public class UserStorage { //class to store users
 				.setPrettyPrinting()
 				.registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter())
 				.create();
+		
 		File jsonStorage = new File("src\\NineGagProject\\jsonStorage.json");
 		if (!jsonStorage.exists()) {
 			try {
@@ -59,6 +62,7 @@ public class UserStorage { //class to store users
 				e.printStackTrace();
 			}
 		}
+
 		String jsonUserStorage = gson.toJson(new HashMap(this.users));
 		
 		try (PrintWriter pw = new PrintWriter(jsonStorage)) {
@@ -67,8 +71,7 @@ public class UserStorage { //class to store users
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-				
+		}	
 	}
 	
 	public void loadJson(String fileName) throws IOException {
@@ -79,12 +82,13 @@ public class UserStorage { //class to store users
 				.registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter())
 				.create();
 		
-		
 		Type type = new TypeToken<Map<String, User>>(){}.getType();
 		Map<String, User> myMap = gson.fromJson(jsonString, type);
 		this.users.putAll(myMap);
 	}
 	
+	
+
 	
 	private String readWithBufferedReader(String fileName) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(fileName));

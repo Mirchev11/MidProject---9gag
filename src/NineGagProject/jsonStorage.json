@@ -1,8 +1,25 @@
 {
+  "drago19@abv.bg": {
+    "fullName": "Dragan Petrov",
+    "password": "DragoUbiva19",
+    "email": "drago19@abv.bg",
+    "userCreationTime": "2019-02-16T18:49:49",
+    "isLoggedIn": true,
+    "commentedPosts": [],
+    "posts": [],
+    "upvotes": [],
+    "favouriteSections": [],
+    "settings": {
+      "photo": "photo20",
+      "userName": "drago19",
+      "sensitiveContent": false
+    }
+  },
   "ivan@abv.bg": {
     "fullName": "Ivan m",
     "password": "Cska1948",
     "email": "ivan@abv.bg",
+<<<<<<< HEAD
     "userCreationTime": "2019-02-16T17:24:27",
     "isLoggedIn": true,
     "commentedPosts": [],
@@ -55,31 +72,58 @@
     "favouriteSections": [],
     "settings": {
       "photo": "photo10",
-      "userName": "ivan",
-      "sensitiveContent": false
-    }
-  },
-  "ivan2@abv.bg": {
-    "fullName": "Ivan m2",
-    "password": "Cska19482",
-    "email": "ivan2@abv.bg",
-    "userCreationTime": "2019-02-16T17:24:27",
+=======
+    "userCreationTime": "2019-02-16T18:46:55",
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [],
     "upvotes": [],
     "favouriteSections": [],
     "settings": {
+      "photo": "photo5",
+>>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
+      "userName": "ivan",
+      "sensitiveContent": false
+    }
+  },
+<<<<<<< HEAD
+  "ivan2@abv.bg": {
+    "fullName": "Ivan m2",
+    "password": "Cska19482",
+    "email": "ivan2@abv.bg",
+    "userCreationTime": "2019-02-16T17:24:27",
+=======
+  "mPetrov23@abv.bg": {
+    "fullName": "Mitko Petrov",
+    "password": "MitakaBaby23",
+    "email": "mPetrov23@abv.bg",
+    "userCreationTime": "2019-02-16T18:46:55",
+>>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
+    "isLoggedIn": true,
+    "commentedPosts": [],
+    "posts": [],
+    "upvotes": [],
+    "favouriteSections": [],
+    "settings": {
+<<<<<<< HEAD
       "photo": "photo11",
       "userName": "ivan2",
+=======
+      "photo": "photo1",
+      "userName": "mPetrov23",
+>>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
       "sensitiveContent": false
     }
   },
   "ivan3@abv.bg": {
     "fullName": "Ivan m3",
-    "password": "Cska19483",
+    "password": "Cska1948",
     "email": "ivan3@abv.bg",
+<<<<<<< HEAD
     "userCreationTime": "2019-02-16T17:24:27",
+=======
+    "userCreationTime": "2019-02-16T18:46:55",
+>>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
     "isLoggedIn": true,
     "commentedPosts": [],
     "posts": [],
@@ -88,6 +132,13 @@
     "settings": {
       "photo": "photo16",
       "userName": "ivan3",
+<<<<<<< HEAD
+=======
+      "birthDate": {},
+      "country": "Aruba",
+      "description": "Some funny things about you",
+      "gender": "MALE",
+>>>>>>> a5c28d69977b29b45b8aee796eaa26672d938b88
       "sensitiveContent": false
     }
   }

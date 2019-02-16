@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 
 import com.google.gson.Gson;
 
-import NineGagProject.Settings.Countries;
+
 import NineGagProject.Settings.Genders;
 
 public class Demo {
@@ -19,6 +19,7 @@ public class Demo {
 	
 	public static void main(String[] args) throws InvalidDataException, InterruptedException, NotLoggedInException, InvalidSectionException, IOException {
 		
+
 //		Ads ad = new Ads();
 //		ad.start();
 		
@@ -31,11 +32,7 @@ public class Demo {
 		
 			
 		
-//		Comment c1 = new Comment("outer comment");
-//		Comment c2 = new Comment("inner Comment");
-//		
-//		post1.addComment(c1);
-//		c1.addReplie(c2);
+
 		
 		
 		User usi2 = new User("Ivan m2","Cska19482","ivan2@abv.bg");
@@ -68,12 +65,27 @@ public class Demo {
 //		storage.loadJson("src\\NineGagProject\\jsonStorage.json");
 //		storage.setUserNames();
 //		storage.printAllUsers();
+//		
+//		
+//		User usi2 = new User("Mitko Petrov","MitakaBaby23","mPetrov23@abv.bg");
+//		User usi3 = new User("Ivan m3","Cska19483","ivan3@abv.bg");
+
+		UserStorage storage = UserStorage.giveUserStorage();
+//		storage.addUserToSite(usi);
+//		storage.addUserToSite(usi2);
+//		storage.addUserToSite(usi3);
+//		
+//		storage.printAllUsers();		
+//		storage.toJson();	
+//		storage.loadJson("src\\NineGagProject\\jsonStorage.json");
+//		storage.setUserNames();
+//		storage.printAllUsers();
 		//storage.printCollection();
 		
 		
 		
-		
-		
+
+
 		
 		//usi.searching("tup");
 		
@@ -81,9 +93,9 @@ public class Demo {
 //		usi.showMyFavouriteSections();
 //		
 //		
-//		NineGag.giveNineGag();
-//		MenuFor9gag m = new MenuFor9gag();
-//		m.main();
+		NineGag.giveNineGag();
+		MenuFor9gag m = new MenuFor9gag();
+		m.main();
 		
 		
 		
