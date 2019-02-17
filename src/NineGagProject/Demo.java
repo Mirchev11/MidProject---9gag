@@ -30,7 +30,7 @@ public class Demo {
 //		post1.addTagsToPost("snimka22","qko22","fun22");
 //		User usi3 = new User("Ivan m3","Cska19483","ivan3@abv.bg");
 //			
-		UserStorage storage = UserStorage.giveUserStorage();
+//		UserStorage storage = UserStorage.giveUserStorage();
 //		storage.addUserToSite(usi);
 //		storage.addUserToSite(usi2);
 //		storage.addUserToSite(usi3);
@@ -45,9 +45,9 @@ public class Demo {
 
 //		storage.toJson();
 		
-		storage.loadJson("src\\NineGagProject\\jsonStorage.json");
+//		storage.loadJson("src\\NineGagProject\\jsonStorage.json");
 //		storage.setUserNames();
-		storage.printAllUsers();
+//		storage.printAllUsers();
 
 		
 		//usi.searching("tup");

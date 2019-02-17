@@ -197,9 +197,10 @@ public class Post {
 	}
 	
 	public boolean isPostTaggedWith(String tag) {
+		tag = tag.toLowerCase();
 		if(Helper.isStringValid(tag)) {
 			for(String t : this.tags) {
-				if(t.contains(tag)) {
+				if(t.toLowerCase().contains(tag)) {
 					return true;
 				}
 			}
@@ -208,8 +209,9 @@ public class Post {
 	}
 	
 	public boolean doesDescriptionContainsSearch(String search) {
+		search = search.toLowerCase();
 		if(Helper.isStringValid(search)) {
-			if(this.description.contains(search)) {
+			if(this.description.toLowerCase().contains(search)) {
 				return true;
 			}
 		}

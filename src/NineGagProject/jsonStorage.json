@@ -242,7 +242,22 @@
         ]
       }
     ],
-    "posts": [],
+    "posts": [
+      {
+        "photo": "Animal Photo3",
+        "description": "Ebasi qkiq jiraf!",
+        "isSensitive": false,
+        "postDate": "2019-02-17T21:38:19",
+        "points": 0,
+        "upvotes": 0,
+        "section": "Animals",
+        "tags": [
+          "animal",
+          "jiraf"
+        ],
+        "comments": []
+      }
+    ],
     "upvotes": [],
     "favouriteSections": [],
     "notifications": [],

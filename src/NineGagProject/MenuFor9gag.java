@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JToggleButton;
@@ -51,6 +52,13 @@ public class MenuFor9gag {
 	 * Create the application.
 	 */
 	public MenuFor9gag() {
+		try {
+			UserStorage.giveUserStorage().loadJson("src\\NineGagProject\\jsonStorage.json");
+		} catch (IOException e) {
+			return;
+
+		}
+		new SpecialSectionWorker().start();
 		initialize();
 	}
 
@@ -113,17 +121,7 @@ public class MenuFor9gag {
 		panel.add(searchField);
 		searchField.setColumns(10);
 
-		JButton button_3 = new JButton("Search");
-		button_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				PostStorage.givePostStorage().giveSearchedPosts(searchField.getText());
-			}
-		});
-		button_3.setForeground(SystemColor.textInactiveText);
-		button_3.setFont(new Font("Tahoma", Font.BOLD, 10));
-		button_3.setBackground(Color.BLACK);
-		button_3.setBounds(91, 13, 69, 20);
-		panel.add(button_3);
+		
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 42, 93, 419);
@@ -320,9 +318,36 @@ public class MenuFor9gag {
 				}
 			}
 		});
+		
 		btnTrending.setBackground(SystemColor.menu);
 		btnTrending.setBounds(0, 21, 89, 23);
 		panel_1.add(btnTrending);
 		btnTrending.setBorder(emptyBorder);
+		
+		
+		JButton button_3 = new JButton("Search");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PostStorage.givePostStorage().giveSearchedPosts(searchField.getText());
+				listModel.removeAllElements();
+				PostWindow[] section = new PostWindow[PostStorage.givePostStorage().giveSearchedPosts(searchField.getText()).length];
+				if (section.length > 0) {
+					for (int index = 0; index < section.length; index++) {
+						posts[index] = new PostWindow(PostStorage.givePostStorage().giveSearchedPosts(searchField.getText())[index]);					
+						listModel.addElement(posts[index]);
+					}
+					list.setModel(listModel);
+					list.setBounds(103, 55, 351, 406);
+					scrollPane.setBounds(103, 42, 352, 419);
+					scrollPane.setViewportView(list);
+					frame.getContentPane().add(scrollPane);
+				}
+			}
+		});
+		button_3.setForeground(SystemColor.textInactiveText);
+		button_3.setFont(new Font("Tahoma", Font.BOLD, 10));
+		button_3.setBackground(Color.BLACK);
+		button_3.setBounds(91, 13, 69, 20);
+		panel.add(button_3);
 	}
 }

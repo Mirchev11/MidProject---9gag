@@ -210,14 +210,14 @@ public class User {
 		}
 		
 
-	public void searching(String search) {
-		if (Helper.isStringValid(search)) {
-			this.printFoundPosts(NineGag.giveNineGag().getPostStorage().giveSearchedPosts(search));
-		} else {
-			System.out.println("Inavlid search");
-		}
-
-	}
+//	public void searching(String search) {
+//		if (Helper.isStringValid(search)) {
+//			this.printFoundPosts(NineGag.giveNineGag().getPostStorage().giveSearchedPosts(search));
+//		} else {
+//			System.out.println("Inavlid search");
+//		}
+//
+//	}
 
 	public void printFoundPosts(List<Post> result) {
 		if (result.size() == 0) {
