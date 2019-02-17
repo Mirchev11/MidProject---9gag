@@ -68,11 +68,7 @@ public class Demo {
 //	Ads ad = new Ads();
 //	ad.start();
 //		 
-		
-		 
-		
-	System.out.println(Arrays.toString(PostStorage.givePostStorage().getPosts()));
-		
+
 		
 		MenuFor9gag.main();
 		

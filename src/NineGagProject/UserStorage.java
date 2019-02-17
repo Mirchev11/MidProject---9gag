@@ -88,6 +88,7 @@ public class UserStorage { //class to store users
 		this.users.putAll(myMap);	
 
 		this.loadPosts();
+		PostStorage.givePostStorage().relocatePosts();
 	}
 	
 	public void loadPosts(){

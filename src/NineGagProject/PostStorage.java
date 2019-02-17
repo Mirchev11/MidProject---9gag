@@ -59,6 +59,9 @@ public class PostStorage {
 		this.hotPosts = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
 		this.trending = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
 		this.sectionOfPosts = new HashMap<String, Set<Post>>(); // ???
+		this.sectionOfPosts.put("Funny", new HashSet<Post>());
+		this.sectionOfPosts.put("Sport", new HashSet<Post>());
+		this.sectionOfPosts.put("Animals", new HashSet<Post>());
 	}
 
 	public static PostStorage givePostStorage() {
@@ -105,17 +108,65 @@ public class PostStorage {
 			}
 		}
 
-		public String[] getPosts(){
-			ArrayList<String> ps = new ArrayList<>();
+		public Post[] getPosts(){
+			ArrayList<Post> ps = new ArrayList<>();
 			
 			for(Post p : this.posts){
-				String pos = p.toString();
-				ps.add(pos);
+				ps.add(p);
 			}
-			String[] posts = new String[ps.size()];
-			posts = ps.toArray(posts);
-			return posts;
+			Post[] pz= new Post[ps.size()];
+			pz = ps.toArray(pz);
+			return pz;
+		}
+		
+		public Post[] getHotPosts(){
+			ArrayList<Post> ps = new ArrayList<>();
 			
+			for(Post p : this.hotPosts){
+				ps.add(p);
+			}
+			Post[] pz= new Post[ps.size()];
+			pz = ps.toArray(pz);
+			return pz;
+		}
+		
+		public Post[] getTrendingPosts(){
+			ArrayList<Post> ps = new ArrayList<>();
+			
+			for(Post p : this.trending){
+				ps.add(p);
+			}
+			Post[] pz= new Post[ps.size()];
+			pz = ps.toArray(pz);
+			return pz;
+		}
+		
+		public Post[] getFreshPosts(){
+			ArrayList<Post> ps = new ArrayList<>();
+			
+			for(Post p : this.fresh){
+				ps.add(p);
+			}
+			Post[] pz= new Post[ps.size()];
+			pz = ps.toArray(pz);
+			return pz;
+		}
+		
+	 void relocatePosts(){
+			for(Post p : this.posts){
+				this.sectionOfPosts.get(p.getSection()).add(p);
+			}
+		}
+		
+		public Post[] getSection(String section){
+			ArrayList<Post> ps = new ArrayList<>();
+			
+			for(Post p : this.sectionOfPosts.get(section)){
+				ps.add(p);
+			}
+			Post[] pz= new Post[ps.size()];
+			pz = ps.toArray(pz);
+			return pz;
 		}
 		
 	public boolean isValidSection(String section) {

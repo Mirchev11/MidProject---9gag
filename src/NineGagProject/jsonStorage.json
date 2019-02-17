@@ -152,6 +152,26 @@
             ]
           }
         ]
+      },
+      {
+        "photo": "files photo",
+        "description": "Nova qka snimka",
+        "isSensitive": true,
+        "postDate": "2019-02-17T09:42:47",
+        "points": 2,
+        "upvotes": 4,
+        "section": "Sport",
+        "tags": [
+          "sportove"
+        ],
+        "comments": [
+          {
+            "date": "2019-02-17T16:54:58",
+            "content": "asda",
+            "points": 0,
+            "replies": []
+          }
+        ]
       }
     ],
     "upvotes": [],
@@ -196,6 +216,26 @@
           {
             "date": "2019-02-16T23:07:38",
             "content": "usi3 comment",
+            "points": 0,
+            "replies": []
+          }
+        ]
+      },
+      {
+        "photo": "files photo",
+        "description": "Nova qka snimka",
+        "isSensitive": true,
+        "postDate": "2019-02-17T09:42:47",
+        "points": 3,
+        "upvotes": 3,
+        "section": "Sport",
+        "tags": [
+          "sportove"
+        ],
+        "comments": [
+          {
+            "date": "2019-02-17T16:54:58",
+            "content": "asda",
             "points": 0,
             "replies": []
           }

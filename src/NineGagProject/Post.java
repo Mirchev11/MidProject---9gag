@@ -235,9 +235,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [user=" + user + ", photo=" + photo + ", description=" + description + ", isSensitive="
-				+ isSensitive + ", postDate=" + postDate + ", points=" + points + ", upvotes=" + upvotes + ", tags="
-				+ tags + "]";
+		return "Post photo= " + photo;
 	}
 
 	public String getDescription() {
@@ -288,6 +286,10 @@ public class Post {
 		} else if (!user.equals(other.user))
 			return false;
 		return true;
+	}
+	
+	protected String getPhoto(){
+		return this.photo;
 	}
 
 	
