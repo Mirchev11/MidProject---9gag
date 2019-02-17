@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.swing.JFrame;
 
@@ -41,6 +42,7 @@ public class Demo {
 		usi3.writeAComment(post1, "usi3 comment");
 		Comment c = usi.writeAComment(post2, "commenting this");
 		Comment reply = usi2.writeAReply(c, "this is my reply");
+		 
 
 
 //		usi.putNotifications();
@@ -59,10 +61,10 @@ public class Demo {
 //		admin.deleteSection("new section");
 //		postStorage.showAllSections();
 		
-		
-		admin.deleteComment(reply, usi2, post2);
-		post1.listAllCommentsForAPost();
-		post2.listAllCommentsForAPost();
+//		
+//		admin.deleteComment(reply, usi2, post2);
+//		post1.listAllCommentsForAPost();
+//		post2.listAllCommentsForAPost();
 		
 //		admin.deleteUser(usi3);
 //		storage.printAllUsers();
@@ -77,8 +79,9 @@ public class Demo {
 //		
 //		
 //		NineGag.giveNineGag();
-//		MenuFor9gag m = new MenuFor9gag();
-//		m.main();
+
+		MenuFor9gag m = new MenuFor9gag();
+		m.main();
 		
 		
 		
@@ -90,7 +93,7 @@ public class Demo {
 //		 
 
 		
-		MenuFor9gag.main();
+		//MenuFor9gag.main();
 		
 	}
 

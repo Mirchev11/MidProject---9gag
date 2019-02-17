@@ -1,9 +1,4 @@
 {
-  "admin@abv.bg": {
-    "fullName": "Admin admin",
-    "password": "Admin*123",
-    "email": "admin@abv.bg"
-  },
   "ivan@abv.bg": {
     "userCreationTime": "2019-02-17T22:02:22",
     "isLoggedIn": true,
