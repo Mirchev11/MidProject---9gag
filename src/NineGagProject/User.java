@@ -26,7 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
-
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 import NineGagProject.Settings.Genders;
 import NineGagProject.Settings.Statuses;
@@ -105,6 +105,14 @@ public class User extends PersonInformation{
 	public void setUserName() {
 		this.settings.setUserName(Helper.userNameMaker(super.getEmail()));
 	}
+	public Set<Post> getPosts(){
+		for(Post p : this.posts){
+			p.setUser(this);
+		}
+		return this.posts;
+	}
+	
+	
 
 	// TODO just for testing; delete it afterwards
 	void printUserInformation() {
@@ -207,14 +215,15 @@ public class User extends PersonInformation{
 		}
 		
 
-	public void searching(String search) throws InvalidDataException {
-		if (Helper.isStringValid(search)) {
-			this.printFoundPosts(NineGag.giveNineGag().getPostStorage().giveSearchedPosts(search));
-		} else {
-			System.out.println("Inavlid search");
-		}
 
-	}
+//	public void searching(String search) {
+//		if (Helper.isStringValid(search)) {
+//			this.printFoundPosts(NineGag.giveNineGag().getPostStorage().giveSearchedPosts(search));
+//		} else {
+//			System.out.println("Inavlid search");
+//		}
+//
+//	}
 
 	public void printFoundPosts(List<Post> result) {
 		if (result.size() == 0) {

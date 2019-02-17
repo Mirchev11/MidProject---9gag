@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ public class Demo {
 	
 	
 	public static void main(String[] args) throws InvalidDataException, InterruptedException, NotLoggedInException, InvalidSectionException, IOException {
-		
+
 		User usi = new User("Ivan m","Cska1948","ivan@abv.bg");
 		
 		Post post1 = usi.createAPost("photo1", "Mega qkata snimka, brat!", "Animals", false);
@@ -41,6 +42,7 @@ public class Demo {
 		Comment c = usi.writeAComment(post2, "commenting this");
 		Comment reply = usi2.writeAReply(c, "this is my reply");
 
+
 //		usi.putNotifications();
 //		usi.showMyNotifications();
 
@@ -49,6 +51,7 @@ public class Demo {
 //		storage.loadJson("src\\NineGagProject\\jsonStorage.json");
 //		storage.setUserNames();
 //		storage.printAllUsers();
+
 //		PostStorage postStorage = PostStorage.givePostStorage();
 		Admin admin  = Admin.giveAdmin();
 //		admin.addSection("new section");
@@ -84,14 +87,10 @@ public class Demo {
 		
 //	Ads ad = new Ads();
 //	ad.start();
-		 
+//		 
+
 		
-		 
-		
-		
-		
-		
-		//MenuFor9gag.main();
+		MenuFor9gag.main();
 		
 	}
 

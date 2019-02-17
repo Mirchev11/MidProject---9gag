@@ -154,6 +154,26 @@
             ]
           }
         ]
+      },
+      {
+        "photo": "files photo",
+        "description": "Nova qka snimka",
+        "isSensitive": true,
+        "postDate": "2019-02-17T09:42:47",
+        "points": 2,
+        "upvotes": 4,
+        "section": "Sport",
+        "tags": [
+          "sportove"
+        ],
+        "comments": [
+          {
+            "date": "2019-02-17T16:54:58",
+            "content": "asda",
+            "points": 0,
+            "replies": []
+          }
+        ]
       }
     ],
     "upvotes": [],
@@ -202,15 +222,75 @@
             "replies": []
           }
         ]
+      },
+      {
+        "photo": "files photo",
+        "description": "Nova qka snimka",
+        "isSensitive": true,
+        "postDate": "2019-02-17T09:42:47",
+        "points": 3,
+        "upvotes": 3,
+        "section": "Sport",
+        "tags": [
+          "sportove"
+        ],
+        "comments": [
+          {
+            "date": "2019-02-17T16:54:58",
+            "content": "asda",
+            "points": 0,
+            "replies": []
+          }
+        ]
       }
     ],
-    "posts": [],
+    "posts": [
+      {
+        "photo": "Animal Photo3",
+        "description": "Ebasi qkiq jiraf!",
+        "isSensitive": false,
+        "postDate": "2019-02-17T21:38:19",
+        "points": 0,
+        "upvotes": 0,
+        "section": "Animals",
+        "tags": [
+          "animal",
+          "jiraf"
+        ],
+        "comments": []
+      }
+    ],
     "upvotes": [],
     "favouriteSections": [],
     "notifications": [],
     "settings": {
       "photo": "photo16",
       "userName": "ivan3",
+      "birthDate": {},
+      "country": "Argentina",
+      "description": "Something killing",
+      "gender": "MALE",
+      "sensitiveContent": false
+    }
+  },
+  "DKiller23@abv.bg": {
+    "fullName": "Dragomir Dragoev",
+    "password": "Drago23Baby",
+    "email": "DKiller23@abv.bg",
+    "userCreationTime": "2019-02-16T23:22:55",
+    "isLoggedIn": true,
+    "commentedPosts": [],
+    "posts": [],
+    "upvotes": [],
+    "favouriteSections": [],
+    "notifications": [],
+    "settings": {
+      "photo": "photo12",
+      "userName": "DKiller23",
+      "birthDate": {},
+      "country": "Aruba",
+      "description": "Im a Killer baby",
+      "gender": "MALE",
       "sensitiveContent": false
     },
     "fullName": "Ivan m3",

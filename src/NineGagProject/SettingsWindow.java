@@ -40,11 +40,11 @@ public class SettingsWindow {
 	private JTextField month;
 	private JTextField day;
 	private JTextField txtSomeFunnyThings;
-	private static User us;
+	private User us;
 	/**
 	 * Launch the application.
 	 */
-	public static void main() {
+	public void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -131,8 +131,15 @@ public class SettingsWindow {
 						e.printStackTrace();
 					}
 					frame.setVisible(false);
-					MenuFor9gag m = new MenuFor9gag();
-					m.main();
+					MenuFor9gag m;
+					try {
+						m = new MenuFor9gag();
+						m.main();
+					} catch (InvalidDataException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
 			});
 			deleteAccountBtn.setFont(new Font("Tahoma", Font.BOLD, 11));

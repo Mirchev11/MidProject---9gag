@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -91,9 +92,17 @@ public class UserStorage { //class to store users
 		
 		Type type = new TypeToken<Map<String, User>>(){}.getType();
 		Map<String, User> myMap = gson.fromJson(jsonString, type);
-		this.users.putAll(myMap);
+		this.users.putAll(myMap);	
+
+		this.loadPosts();
+		PostStorage.givePostStorage().relocatePosts();
 	}
 	
+	public void loadPosts(){
+		for(Entry<String,PersonInformation> user : this.users.entrySet()){
+			PostStorage.givePostStorage().addPostForUserWhenLoading(((User) user.getValue()).getPosts());
+		}
+	}
 	
 
 	
