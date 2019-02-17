@@ -16,7 +16,7 @@ import java.util.TreeSet;
 
 import com.google.gson.annotations.Expose;
 
-public class Post {
+public class Post{
 	
 	private static final int MAX_HOURS_FOR_COMMENTS_IN_FRESH = 2;
 	private static final int POINTS_FOR_HOT_COMMENTS = 5;
@@ -47,7 +47,7 @@ public class Post {
 	
 	
 
-	public Post(User user, String photo, String description) throws NotLoggedInException {
+	public Post(User user, String photo, String description) throws NotLoggedInException, InvalidDataException {
 
 		if (user.isLoggedIn()) {
 			this.postDate = LocalDateTime.now();
@@ -84,7 +84,7 @@ public class Post {
 		//this.showPost();
 	}
 
-	public Post(User user, String photo, String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException {
+	public Post(User user, String photo, String description, String section, boolean isSensitive) throws NotLoggedInException, InvalidSectionException, InvalidDataException {
 		this(user, photo, description);
 		if(PostStorage.givePostStorage().isValidSection(section)) {
 			this.section = section;
@@ -109,6 +109,34 @@ public class Post {
 			this.comments.add(comment);
 		}
 	}
+	
+	public boolean checkIfCommentHasReplies(Comment c) {
+		if(c != null && this.comments.contains(c)) {
+			List<Comment> replies = c.getReplies();
+			if(!replies.isEmpty()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public Comment checkIfPostHasThisReply(Comment comment) {
+		Comment parent = null;
+		if(comment != null) {
+			for(Comment c : comments) {
+				List<Comment> replies = c.getReplies();
+				if(replies.contains(comment)) {
+					parent = c;	
+				}
+				
+			}	
+		}
+		return parent;
+		
+	}
+	
+	
 	
 	void putCommentsInFresh() {
 		if(!comments.isEmpty()) {
@@ -153,23 +181,19 @@ public class Post {
 	
 
 	public void showPost() {
-		System.out.println(this.user.getFullName());
 		System.out.println("-----------------------------------");
-		System.out.println("-----------------------------------");
-		System.out.println("Descripion: \n" + this.description);
-		System.out.println("----------------------------");
-		System.out.println(this.photo);
-		System.out.println("----------------------------");
+		System.out.println("Full name: " + this.user.getFullName());
+		System.out.println("Descripion: " + this.description);
+		System.out.println("Photo: " + this.photo);
 		System.out.println("Points: " + this.points);
-		System.out.println("----------------------------");
 		System.out.println("Uploaded on: " + this.postDate);
-		System.out.println("-----------------------------------");
 		System.out.println("-----------------------------------");
 	}
 
 	public void listAllCommentsForAPost() {
 		for (Comment c : this.comments) {
 			c.printComment();// da izvadq metod, koito mi printi komentara.
+			c.printAllReplies();
 		}
 	}
 	
@@ -194,6 +218,25 @@ public class Post {
 		}
 		return allTagsForAPost;
 		
+	}
+	
+	public void deleteComment(Comment comment) {
+		if(comment != null) {
+			if(this.comments.contains(comment)) {
+				this.comments.remove(comment);
+				comment = null;
+				return;
+			}
+		}
+	}
+	
+	public boolean containsComment(Comment comment) {
+		if(comment != null) {
+			if(this.comments.contains(comment)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean isPostTaggedWith(String tag) {
@@ -242,6 +285,10 @@ public class Post {
 
 	public String getDescription() {
 		return description;
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 	

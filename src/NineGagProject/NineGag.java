@@ -44,7 +44,7 @@ public class NineGag {
 	private UserStorage usersStorage;
 	private PostStorage postsStorage;
 
-	private NineGag() {
+	private NineGag() throws InvalidDataException {
 		this.allTags = new HashSet<String>();
 		this.usersStorage = UserStorage.giveUserStorage();
 		this.postsStorage = PostStorage.givePostStorage();
@@ -52,7 +52,7 @@ public class NineGag {
 
 	}
 
-	public static NineGag giveNineGag() {
+	public static NineGag giveNineGag() throws InvalidDataException {
 		if (NineGag.singleton == null) {
 			NineGag.singleton = new NineGag();
 		}

@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Color;
 import java.awt.SystemColor;
 
@@ -105,16 +106,24 @@ public class Login_System { //napravih sistema za logvane na useri
 				
 				String password = passwordField.getText();
 				String email = EmailField.getText();
-				if( UserStorage.giveUserStorage().checkIfUserExists(email)) {
-					if( NineGag.giveNineGag().getUserStorage().checkIfPasswordIsCorrect(email, password)) {
-						User us = UserStorage.giveUserStorage().getUserFromStorage(email);
-						JOptionPane.showMessageDialog(null, "Welcome back " + us.getFullName(), "Logged in!", JOptionPane.INFORMATION_MESSAGE);
-						frame.setVisible(false);
-						MenuForLoggedUsers9gag m = new MenuForLoggedUsers9gag(us);
-						m.main();
+				try {
+					if( UserStorage.giveUserStorage().checkIfUserExists(email)) {
+						if( NineGag.giveNineGag().getUserStorage().checkIfPasswordIsCorrect(email, password)) {
+							User us = UserStorage.giveUserStorage().getUserFromStorage(email);
+							JOptionPane.showMessageDialog(null, "Welcome back " + us.getFullName(), "Logged in!", JOptionPane.INFORMATION_MESSAGE);
+							frame.setVisible(false);
+							MenuForLoggedUsers9gag m = new MenuForLoggedUsers9gag(us);
+							m.main();
+						}
+					} else {
+					JOptionPane.showMessageDialog(null, "Invalid loggin details!", "Login Error", JOptionPane.ERROR_MESSAGE);
 					}
-				} else {
-				JOptionPane.showMessageDialog(null, "Invalid loggin details!", "Login Error", JOptionPane.ERROR_MESSAGE);
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidDataException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
 			}

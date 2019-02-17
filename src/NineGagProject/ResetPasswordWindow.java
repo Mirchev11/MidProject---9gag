@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Color;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
@@ -74,16 +75,24 @@ public class ResetPasswordWindow {
 				
 				String email = txtEnterYourEmail.getText();
 				
-				if(UserStorage.giveUserStorage().checkIfUserExists(email)) {
-						
-						NineGag.giveNineGag().forgotPassword(email);
-						JOptionPane.showMessageDialog(null, "Email was sent with your new password!", "Email sent!", JOptionPane.INFORMATION_MESSAGE);
-						frame.setVisible(false);
-						MenuFor9gag m = new MenuFor9gag();
-						m.main();
-					} else {
-						JOptionPane.showMessageDialog(null, "Invalid email!", "Couldn't sent an email!", JOptionPane.ERROR_MESSAGE);
-					}
+				try {
+					if(UserStorage.giveUserStorage().checkIfUserExists(email)) {
+							
+							NineGag.giveNineGag().forgotPassword(email);
+							JOptionPane.showMessageDialog(null, "Email was sent with your new password!", "Email sent!", JOptionPane.INFORMATION_MESSAGE);
+							frame.setVisible(false);
+							MenuFor9gag m = new MenuFor9gag();
+							m.main();
+						} else {
+							JOptionPane.showMessageDialog(null, "Invalid email!", "Couldn't sent an email!", JOptionPane.ERROR_MESSAGE);
+						}
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidDataException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_1.setBackground(SystemColor.textHighlight);

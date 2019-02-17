@@ -29,24 +29,31 @@ import java.time.ZonedDateTime;
 public class UserStorage { //class to store users
 	
 	
-	private Map<String, User> users; // String - mail, User -user
+	private Map<String, PersonInformation> users; // String - mail, User -user
 	private static UserStorage storage;
 	
 	
-	private UserStorage(){
-		this.users = new HashMap<String, User>();
+	private UserStorage() throws InvalidDataException{
+		this.users = new HashMap<String, PersonInformation>();
+
 		
 	}
 	//TODO mnooogo typ nachin
 	public void setUserNames() {
-		for (Map.Entry<String, User> en : users.entrySet()) {
-			User us = en.getValue();
+		for (Map.Entry<String, PersonInformation> en : users.entrySet()) {
+			User us = (User)en.getValue();
 			us.setUserName();
 		}
 	}
 	
-	public void toJson() {
-		
+	private void addAdminToSite() throws InvalidDataException {
+		PersonInformation admin = Admin.giveAdmin();
+		this.users.put(admin.getEmail(), admin);
+	}
+	
+	public void toJson() throws InvalidDataException {
+
+		addAdminToSite();
 		Gson gson = new GsonBuilder()
 				.excludeFieldsWithoutExposeAnnotation()
 				.setPrettyPrinting()
@@ -109,7 +116,7 @@ public class UserStorage { //class to store users
 	}
 
 	
-	public static UserStorage giveUserStorage(){
+	public static UserStorage giveUserStorage() throws InvalidDataException{
 		if(UserStorage.storage == null){
 			UserStorage.storage = new UserStorage();
 		}
@@ -117,15 +124,15 @@ public class UserStorage { //class to store users
 		return UserStorage.storage;
 	}
 	
-	Map<String, User> getCopyOfUsers(){
+	Map<String, PersonInformation> getCopyOfUsers(){
 		return Collections.unmodifiableMap(users);
 	}
 	
 	// User methods - add,check, etc:
 
 	void printAllUsers() { // print for check purpose
-		for (Map.Entry<String, User> en : users.entrySet()) {
-			User us = en.getValue();
+		for (Map.Entry<String, PersonInformation> en : users.entrySet()) {
+			User us = (User)en.getValue();
 			System.out.println("areee");
 			us.printUserInformation();
 		}
@@ -169,7 +176,7 @@ public class UserStorage { //class to store users
 
 	boolean checkIfPasswordIsCorrect(String email, String pass) { // pass check
 		if (this.checkIfUserExists(email)) {
-			User u = users.get(email);
+			User u = (User)users.get(email);
 			if (u.getPassword().equals(pass)) {
 				return true;
 			}
@@ -178,7 +185,7 @@ public class UserStorage { //class to store users
 	}
 
 	public User getUserFromStorage(String email){
-		return this.users.get(email);
+		return (User) this.users.get(email);
 	}
 	
 

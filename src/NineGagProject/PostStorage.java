@@ -3,6 +3,7 @@ package NineGagProject;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -40,7 +41,7 @@ public class PostStorage {
 	private Map<String, Set<Post>> sectionOfPosts; // String section, tree set
 													// of posts
 
-	private final String[] sections = { "Funny", "Animals", "Sport", };
+	private ArrayList<String> allSections;
 
 	public PostStorage() {
 		this.fresh = new TreeSet<Post>((post1, post2) -> post1.getPostDate().compareTo(post2.getPostDate()));
@@ -48,6 +49,10 @@ public class PostStorage {
 		this.hotPosts = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
 		this.trending = new TreeSet<Post>((post1, post2) -> post1.getPoints() - post2.getPoints());
 		this.sectionOfPosts = new HashMap<String, Set<Post>>(); // ???
+		allSections = new ArrayList<String>();
+		allSections.add("Funny");
+		allSections.add("Animals");
+		allSections.add("Sport");
 	}
 
 	public static PostStorage givePostStorage() {
@@ -59,7 +64,7 @@ public class PostStorage {
 
 	// posts methods and distributing
 	
-		void addMeme(Post newPost) {
+		void addMeme(Post newPost) throws InvalidDataException {
 		if (newPost != null && this.isValidSection(newPost.getSection())) {
 			this.posts.add(newPost);
 			if (this.sectionOfPosts.containsKey(newPost.getSection())) {
@@ -87,13 +92,28 @@ public class PostStorage {
 		//		return tags;
 		//	}
 	
+	public void addNewSection(String section) {
+		if(Helper.isStringValid(section)) {
+			this.allSections.add(section);
+		}
+	}
+	
+	public void deleteSection(String section) {
+		if(Helper.isStringValid(section) && this.allSections.contains(section)) {
+			this.allSections.remove(section);
+		}
+	}
+	
+	public void showAllSections() {
+		System.out.println(this.allSections);
+	}
 
 	public boolean isValidSection(String section) {
 		boolean isValid = false;
 		if(Helper.isStringValid(section)) {
-			int length = this.sections.length;
+			int length = this.allSections.size();
 			for(int index = 0 ; index < length; index++) {
-				if(sections[index].equalsIgnoreCase(section)) {
+				if(allSections.get(index).equalsIgnoreCase(section)) {
 					isValid = true; 
 					break;
 				}
@@ -181,6 +201,23 @@ public class PostStorage {
 			p.showPost();
 		}
 		return resultsFromSearch;
+	}
+	
+	public void deletePost(Post post) {
+		if(post != null) {
+			if(this.posts.contains(post)) {
+				//System.out.println("Deleting this post: " + post);
+				this.posts.remove(post);
+				User user = post.getUser();
+				user.deleteMyPost(post);
+			}
+		}
+	}
+	
+	public void showAllPosts() {
+		for(Post p : posts) {
+			System.out.println(p);
+		}
 	}
 
 }

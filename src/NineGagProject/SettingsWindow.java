@@ -116,10 +116,20 @@ public class SettingsWindow {
 			JButton deleteAccountBtn = new JButton("Delete account");
 			deleteAccountBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					UserStorage.giveUserStorage().deleteUser(us);
+					try {
+						UserStorage.giveUserStorage().deleteUser(us);
+					} catch (InvalidDataException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					JOptionPane.showMessageDialog(null, "Sorry you felt that," + us.getFullName() + " !",
 							"Your account was deactivated!", JOptionPane.INFORMATION_MESSAGE);
-					UserStorage.giveUserStorage().toJson();
+					try {
+						UserStorage.giveUserStorage().toJson();
+					} catch (InvalidDataException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					frame.setVisible(false);
 					MenuFor9gag m = new MenuFor9gag();
 					m.main();
@@ -163,7 +173,12 @@ public class SettingsWindow {
 					us.setEmail(emailField.getText());
 					JOptionPane.showMessageDialog(null, "Your username and email were changed!",
 							"Settings message", JOptionPane.INFORMATION_MESSAGE);	
-					UserStorage.giveUserStorage().toJson();
+					try {
+						UserStorage.giveUserStorage().toJson();
+					} catch (InvalidDataException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			});
 			saveChangesAcc.setForeground(SystemColor.text);
@@ -179,7 +194,12 @@ public class SettingsWindow {
 					if(us.changePassword(passwordField.getText(), passwordField_1.getText())){
 						JOptionPane.showMessageDialog(null, "Password changed successfully!",
 								"Settings message!", JOptionPane.INFORMATION_MESSAGE);
-						UserStorage.giveUserStorage().toJson();
+						try {
+							UserStorage.giveUserStorage().toJson();
+						} catch (InvalidDataException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Invalid password!",
 								"Settings message!", JOptionPane.ERROR_MESSAGE);
@@ -300,7 +320,12 @@ public class SettingsWindow {
 					us.getSettings().description(txtSomeFunnyThings.getText());
 					JOptionPane.showMessageDialog(null, "Description changed successfully!",
 							"Settings message!", JOptionPane.INFORMATION_MESSAGE);
-					UserStorage.giveUserStorage().toJson();
+					try {
+						UserStorage.giveUserStorage().toJson();
+					} catch (InvalidDataException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			});
 			button.setForeground(Color.WHITE);
@@ -329,7 +354,12 @@ public class SettingsWindow {
 						e1.printStackTrace();
 					}
 					
-					UserStorage.giveUserStorage().toJson();
+					try {
+						UserStorage.giveUserStorage().toJson();
+					} catch (InvalidDataException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			});
 			button_1.setForeground(Color.WHITE);

@@ -75,6 +75,16 @@ public class Comment {
 		
 	}
 	
+	public boolean containsReply(Comment c) {
+		if(c != null) {
+			if(this.replies.contains(c)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	protected void addReplie(Comment c) {
 		if(c != null) {
 			this.replies.add(c);

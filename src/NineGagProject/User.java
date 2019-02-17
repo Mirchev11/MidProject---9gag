@@ -32,17 +32,17 @@ import NineGagProject.Settings.Genders;
 import NineGagProject.Settings.Statuses;
 import sun.misc.IOUtils;
 
-public class User {
+public class User extends PersonInformation{
 	public enum Genders {
 		MALE, FEMALE, UNSPECIFIED;
 	}
 
-	@Expose
-	private String fullName;
-	@Expose
-	private String password;
-	@Expose
-	private String email;
+//	@Expose
+//	private String fullName;
+//	@Expose
+//	private String password;
+//	@Expose
+//	private String email;
 	@Expose
 	private LocalDateTime userCreationTime;
 	@Expose
@@ -61,32 +61,34 @@ public class User {
 	private Settings settings;
 
 	public User(String names, String pass, String email) throws InvalidDataException {
+		
+		super(names, pass, email);
 		this.settings = new Settings(this);
 
-		if (Helper.isNameValid(names)) {
-			this.fullName = names;
-		} else {
-			throw new InvalidDataException("Unable to create user!");
-		}
+//		if (Helper.isNameValid(names)) {
+//			this.fullName = names;
+//		} else {
+//			throw new InvalidDataException("Unable to create user!");
+//		}
+//
+//		if (Helper.passwordValidator.isPasswordStrong(pass)) {
+//			this.password = pass;
+//		} else {
+//			throw new InvalidDataException("Unable to create user!");
+//		}
+//
+//		Helper.EmailValidator validator = new Helper.EmailValidator();
+//
+//		if (validator.validate(email) || email == null) { // check if there
+//															// already is such
+//															// email in the
+//															// database
+//			this.email = email;
+//		} else {
+//			throw new InvalidDataException("Unable to create user!");
+//		}
 
-		if (Helper.passwordValidator.isPasswordStrong(pass)) {
-			this.password = pass;
-		} else {
-			throw new InvalidDataException("Unable to create user!");
-		}
-
-		Helper.EmailValidator validator = new Helper.EmailValidator();
-
-		if (validator.validate(email) || email == null) { // check if there
-															// already is such
-															// email in the
-															// database
-			this.email = email;
-		} else {
-			throw new InvalidDataException("Unable to create user!");
-		}
-
-		this.settings.setUserName(Helper.userNameMaker(this.email));
+		this.settings.setUserName(Helper.userNameMaker(super.getEmail()));
 		this.commentedPosts = new TreeSet<Post>((com1, com2) -> com1.getPostDate().compareTo(com2.getPostDate()));
 		this.posts = new TreeSet<Post>((pos1, pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
 		this.upvotes = new TreeSet<Post>((pos1, pos2) -> pos1.getPostDate().compareTo(pos2.getPostDate()));
@@ -101,15 +103,15 @@ public class User {
 	}
 
 	public void setUserName() {
-		this.settings.setUserName(Helper.userNameMaker(this.email));
+		this.settings.setUserName(Helper.userNameMaker(super.getEmail()));
 	}
 
 	// TODO just for testing; delete it afterwards
 	void printUserInformation() {
 		System.out.println("---------------- Start of Account Information ----------------");
-		System.out.println("Full name: " + this.fullName);
-		System.out.println("Password: " + this.password);
-		System.out.println("Email: " + this.email);
+		System.out.println("Full name: " + super.getFullName());
+		System.out.println("Password: " + super.getPassword());
+		System.out.println("Email: " + super.getEmail());
 		System.out.println("User name: " + settings.getUserName());
 		// System.out.println("Date of creation: " + this.userCreationTime);
 		System.out.println("---------------- End of Account Information ----------------");
@@ -133,21 +135,21 @@ public class User {
 		}
 	}
 
-	public boolean changePassword(String newPass, String reNewPass) {
-		if (newPass.equals(reNewPass)) {
-			Helper.passwordValidator passValidator = new Helper.passwordValidator();
-			if (passValidator.isPasswordStrong(newPass)) {
-				this.password = newPass;
-				return true;
-			} else {
-				System.out.println("New password is weak!");
-				return false;
-			}
-		} else {
-			System.out.println("Passwords are not equal!");
-			return false;
-		}
-	}
+//	public boolean changePassword(String newPass, String reNewPass) {
+//		if (newPass.equals(reNewPass)) {
+//			Helper.passwordValidator passValidator = new Helper.passwordValidator();
+//			if (passValidator.isPasswordStrong(newPass)) {
+//				this.password = newPass;
+//				return true;
+//			} else {
+//				System.out.println("New password is weak!");
+//				return false;
+//			}
+//		} else {
+//			System.out.println("Passwords are not equal!");
+//			return false;
+//		}
+//	}
 
 	public void listAllPosts() {
 		System.out.println("Posts: ");
@@ -184,11 +186,14 @@ public class User {
 			
 		}
 		
-		public void writeAReply(Comment comment,String reply) throws InvalidDataException {
+		public Comment writeAReply(Comment comment,String reply) throws InvalidDataException {
 			if(Helper.isStringValid(reply)) {
 				Comment c = new Comment(reply);
 				c.setUser(this);
 				comment.addReplie(c);
+				return c;
+			} else {
+				throw new InvalidDataException("Invalid comment given!");
 			}
 			
 		}
@@ -202,7 +207,7 @@ public class User {
 		}
 		
 
-	public void searching(String search) {
+	public void searching(String search) throws InvalidDataException {
 		if (Helper.isStringValid(search)) {
 			this.printFoundPosts(NineGag.giveNineGag().getPostStorage().giveSearchedPosts(search));
 		} else {
@@ -241,11 +246,11 @@ public class User {
 
 	}
 
-	protected void setFullName(String fullName) {
-		if(Helper.isNameValid(fullName)){
-		this.fullName = fullName;
-		}
-	}
+//	protected void setFullName(String fullName) {
+//		if(Helper.isNameValid(fullName)){
+//		this.fullName = fullName;
+//		}
+//	}
 		
 		public void putNotifications() {
 			for(Post p : posts) {
@@ -289,41 +294,80 @@ public class User {
 				}
 			}
 		}
+		
+		public void deleteMyPost(Post post) {
+			if(post != null) {
+				if(this.posts.contains(post)) {
+					//System.out.println("Deleting this post: " + post);
+					this.posts.remove(post);
+					post = null;
+					return;
+				}
+			}
+		}
+		
+		public void deleteCommentFromMyPost(Comment comment, Post p) {
+			if(comment != null && p != null) {
+				if(this.posts.contains(p)) {
+					if(p.containsComment(comment)) {
+						p.deleteComment(comment);
+					}
+				}
+				Comment parent = p.checkIfPostHasThisReply(comment);
+				if(parent != null) {
+					parent.removeRepplie(comment);
+				}
+			}
+		}
+		
+		public void deleteMyCommentOnOtherPosts(Comment c, Post p) {
+			if(c != null && p != null) {
+				if(this.commentedPosts.contains(p)) {
+					if(p.containsComment(c) && c.getUser().equals(this)) {
+						p.deleteComment(c);
+					}	
+				}
+				Comment parent = p.checkIfPostHasThisReply(c);
+				if(parent != null && c.getUser().equals(this)) {
+					parent.removeRepplie(c);
+				}
+			}
+		}
 
 
 
-	protected String getFullName() {
-		return fullName;
-	}
-
-	protected String getPassword() {
-		return password;
-	}
-
-	protected String getEmail() {
-		return email;
-	}
+//	protected String getFullName() {
+//		return fullName;
+//	}
+//
+//	protected String getPassword() {
+//		return password;
+//	}
+//
+//	protected String getEmail() {
+//		return email;
+//	}
 
 	public boolean isLoggedIn() {
 		return isLoggedIn;
 	}
 
-	protected void setEmail(String email) {
-		Helper.EmailValidator validator = new Helper.EmailValidator();
+//	protected void setEmail(String email) {
+//		Helper.EmailValidator validator = new Helper.EmailValidator();
+//
+//		if (validator.validate(email) || email == null) {
+//			this.email = email;
+//		}
+//
+//	}
 
-		if (validator.validate(email) || email == null) {
-			this.email = email;
-		}
-
-	}
-
-	void forgottenPass(String newPass) {
-		this.password = newPass;
-	}
+//	void forgottenPass(String newPass) {
+//		this.password = newPass;
+//	}
 
 	@Override
 	public String toString() {
-		return "User [fullName=" + fullName + ", password=" + password + ", email=" + email + ", userCreationTime="
+		return "User [fullName=" + super.getFullName() + ", password=" + super.getPassword() + ", email=" + super.getEmail() + ", userCreationTime="
 				+ userCreationTime + ", isLoggedIn=" + isLoggedIn + ", upvotes=" + upvotes + ", favouriteSections="
 				+ favouriteSections + "]";
 	}
